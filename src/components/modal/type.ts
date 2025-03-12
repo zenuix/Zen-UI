@@ -3,7 +3,7 @@ import { ReactNode } from 'react';
 export interface ModalProps {
   children?: ReactNode;
   className?: string;
-  displayButton?: boolean;
+  withCloseButton?: boolean;
 }
 export interface ModalContextType {
   isOpen: boolean;
