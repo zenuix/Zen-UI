@@ -1,4 +1,5 @@
 import './style.css';
+import '../../global-style.css';
 import { ReactNode } from 'react';
 import { ModalProvider } from './context';
 
