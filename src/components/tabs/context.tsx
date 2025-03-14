@@ -1,16 +1,13 @@
-import { createContext } from 'react';
+import { createContext, useState } from 'react';
+import { TabsContextType, TabsProviderProps } from './type';
 
-/**
- * context 타입
- */
-interface TabsContextType {
-  activeTabId: string | null;
-  setActiveTabId: ((id: string) => void) | null;
-}
+export const TabsContext = createContext<TabsContextType>({
+  activeTab: '',
+  setActiveTab: () => {}
+});
 
-const initialValue = {
-  activeTabId: null,
-  setActiveTabId: null
+export const TabsProvider = ({ children, defaultTab }: TabsProviderProps) => {
+  const [activeTab, setActiveTab] = useState<string>(defaultTab);
+
+  return <TabsContext.Provider value={{ activeTab, setActiveTab }}>{children}</TabsContext.Provider>;
 };
-
-export const TabsContext = createContext<TabsContextType>(initialValue);

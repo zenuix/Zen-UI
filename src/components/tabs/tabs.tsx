@@ -1,27 +1,19 @@
-import { useState } from 'react';
-import { TabsContext } from './context';
+import { TabsProvider } from './context';
 import Content from './subcomponents/content';
 import ContentGroup from './subcomponents/content-group';
 import Tab from './subcomponents/tab';
 import TabGroup from './subcomponents/tab-group';
-import { TabsContainerProps } from './type';
+import { TabsComponentProps } from './type';
 
-/**
- * Tabs 전체 컨테이너
- */
-const TabsContainer = ({ children, defaultTabId }: TabsContainerProps) => {
-  const [activeTabId, setActiveTabId] = useState(defaultTabId);
-  return <TabsContext.Provider value={{ activeTabId, setActiveTabId }}>{children}</TabsContext.Provider>;
+const TabsComponent = ({ children, defaultTab }: TabsComponentProps) => {
+  return <TabsProvider defaultTab={defaultTab}>{children}</TabsProvider>;
 };
 
-/**
- * Tabs 컴파운드 컴포넌트
- */
-const Tabs = Object.assign(TabsContainer, {
-  TabGroup,
-  Tab,
-  ContentGroup,
-  Content
+const Tabs = Object.assign(TabsComponent, {
+  tabGroup: TabGroup,
+  tab: Tab,
+  contentGroup: ContentGroup,
+  content: Content
 });
 
 export default Tabs;

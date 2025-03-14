@@ -3,9 +3,9 @@ import { ContentProps } from '../type';
 import { TabsContext } from '../context';
 
 const Content = ({ children, id }: ContentProps) => {
-  const { activeTabId } = useContext(TabsContext);
+  const { activeTab } = useContext(TabsContext);
 
-  if (activeTabId !== id) return null;
+  if (activeTab !== id) return null;
 
   return <div>{children}</div>;
 };

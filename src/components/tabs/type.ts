@@ -1,37 +1,34 @@
-/**
- * 탭 루트 컴포넌트
- */
-export interface TabsContainerProps {
-  children?: React.ReactNode;
-  defaultTabId: string;
-}
+import { Dispatch, SetStateAction } from 'react';
 
-/**
- * 탭 버튼 그룹 컴포넌트
- */
-export interface TabGroupProps {
+export type TabsComponentProps = {
   children?: React.ReactNode;
-}
+  defaultTab: string;
+};
 
-/**
- * 개별 탭 버튼 컴포넌트
- */
-export interface TabProps {
+export type TabGroupProps = {
+  children?: React.ReactNode;
+};
+
+export type TabProps = {
   children?: React.ReactNode;
   id: string;
-}
+};
 
-/**
- * 탭 내용 그룹 컴포넌트
- */
-export interface ContentGroupProps {
+export type ContentGroupProps = {
   children?: React.ReactNode;
-}
+};
 
-/**
- * 개별 탭 내용 컴포넌트
- */
-export interface ContentProps {
+export type ContentProps = {
   children?: React.ReactNode;
   id: string;
-}
+};
+
+export type TabsContextType = {
+  activeTab: string;
+  setActiveTab: Dispatch<SetStateAction<string>>;
+};
+
+export type TabsProviderProps = {
+  children?: React.ReactNode;
+  defaultTab: string;
+};
