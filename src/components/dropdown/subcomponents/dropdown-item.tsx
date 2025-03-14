@@ -6,7 +6,9 @@ const DropdownItem = ({ children, onClick, ...props }: DropdownItemProps) => {
   const { closeMenu } = useContext(dropdownContext);
 
   const handleDropdownItemClick = (e: React.MouseEvent<HTMLLIElement>) => {
-    if (onClick) onClick(e);
+    if (onClick && typeof onClick !== 'function')
+      console.warn('onClick should be a function, ignoring invalid handler');
+    else if (onClick) onClick(e);
     closeMenu();
   };
 
