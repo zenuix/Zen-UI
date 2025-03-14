@@ -16,4 +16,6 @@ const DropdownTrigger = ({ children, onClick, ...props }: DropdownTriggerProps) 
     </button>
   );
 };
+DropdownTrigger.displayName = 'dropdown-trigger';
+
 export default DropdownTrigger;

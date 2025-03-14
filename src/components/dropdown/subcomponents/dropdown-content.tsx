@@ -11,4 +11,6 @@ const DropdownContent = ({ children, style, ...props }: DropdownContentProps) =>
     </div>
   );
 };
+DropdownContent.displayName = 'dropdown-content';
+
 export default DropdownContent;

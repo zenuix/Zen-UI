@@ -16,4 +16,6 @@ const DropdownItem = ({ children, onClick, ...props }: DropdownItemProps) => {
     </li>
   );
 };
+DropdownItem.displayName = 'dropdown-item';
+
 export default DropdownItem;
