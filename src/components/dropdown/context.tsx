@@ -15,9 +15,9 @@ const DropdownProvider = ({ children, defaultOpen = false, open, onOpenChange }:
   const isOpen = isControlled ? open : internalOpen;
 
   const setOpen = (value: boolean) => {
-    if (onOpenChange && typeof onOpenChange !== 'function')
+    if (!!onOpenChange && typeof onOpenChange !== 'function')
       console.warn('onOpenChange should be a function, ignoring invalid handler');
-    else if (onOpenChange) onOpenChange(value);
+    else if (!!onOpenChange) onOpenChange(value);
     if (isControlled) setInternalOpen(value);
   };
 

@@ -6,9 +6,9 @@ const DropdownTrigger = forwardRef<HTMLButtonElement, DropdownTriggerProps>(({ c
   const { toggleMenu } = useContext(dropdownContext);
 
   const handleTriggerClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    if (onClick && typeof onClick !== 'function')
+    if (!!onClick && typeof onClick !== 'function')
       console.warn('onClick should be a function, ignoring invalid handler');
-    else if (onClick) onClick(e);
+    else if (!!onClick) onClick(e);
     toggleMenu();
   };
 
