@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from 'react';
+import { createContext, useState } from 'react';
 import { DropdownProps, DropdownContextType } from './type';
 
 export const dropdownContext = createContext<DropdownContextType>({
@@ -29,10 +29,6 @@ const DropdownProvider = ({ children, defaultOpen = false, open, onOpenChange }:
   const openMenu = () => setOpen(true);
   const closeMenu = () => setOpen(false);
   const toggleMenu = () => setOpen(!isOpen);
-
-  useEffect(() => {
-    if (isControlled) setInternalOpen(open);
-  }, [isControlled, open]);
 
   return (
     <dropdownContext.Provider value={{ isOpen, openMenu, closeMenu, toggleMenu }}>{children}</dropdownContext.Provider>
