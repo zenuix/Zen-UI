@@ -23,7 +23,7 @@ const DropdownProvider = ({ children, defaultOpen = false, open, onOpenChange }:
     if (!!onOpenChange && typeof onOpenChange !== 'function')
       console.warn('onOpenChange should be a function, ignoring invalid handler');
     else if (!!onOpenChange) onOpenChange(value);
-    if (isControlled) setInternalOpen(value);
+    if (!isControlled) setInternalOpen(value);
   };
 
   const openMenu = () => setOpen(true);
