@@ -14,6 +14,11 @@ const DropdownProvider = ({ children, defaultOpen = false, open, onOpenChange }:
   const isControlled = open !== undefined;
   const isOpen = isControlled ? open : internalOpen;
 
+  if (isControlled && !onOpenChange)
+    console.warn(
+      'You provided `open` prop without an `onOpenChange` handler. This will render a non-interactive dropdown component.'
+    );
+
   const setOpen = (value: boolean) => {
     if (!!onOpenChange && typeof onOpenChange !== 'function')
       console.warn('onOpenChange should be a function, ignoring invalid handler');
