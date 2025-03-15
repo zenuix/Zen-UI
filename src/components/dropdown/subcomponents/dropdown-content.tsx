@@ -1,16 +1,17 @@
-import { useContext } from 'react';
+import { useContext, forwardRef } from 'react';
 import { dropdownContext } from '../context';
 import { DropdownContentProps } from '../type';
 
-const DropdownContent = ({ children, style, ...props }: DropdownContentProps) => {
+const DropdownContent = forwardRef<HTMLDivElement, DropdownContentProps>(({ children, style, ...props }, ref) => {
   const { isOpen } = useContext(dropdownContext);
 
   return (
-    <div {...props} style={{ display: isOpen ? 'block' : 'none', ...style }}>
+    <div ref={ref} {...props} style={{ display: isOpen ? 'block' : 'none', ...style }}>
       {children}
     </div>
   );
-};
+});
+
 DropdownContent.displayName = 'dropdown-content';
 
 export default DropdownContent;

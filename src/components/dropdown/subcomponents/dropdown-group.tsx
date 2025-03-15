@@ -1,8 +1,14 @@
-import { DropdownGroupProps } from '../type';
+import { forwardRef } from 'react';
 
-const DropdownGroup = ({ children, ...props }: DropdownGroupProps) => {
-  return <ul {...props}>{children}</ul>;
-};
+type DropdownGroupProps = React.HtmlHTMLAttributes<HTMLUListElement> & {};
+
+const DropdownGroup = forwardRef<HTMLUListElement, DropdownGroupProps>(({ children, ...props }, ref) => {
+  return (
+    <ul ref={ref} {...props}>
+      {children}
+    </ul>
+  );
+});
 DropdownGroup.displayName = 'dropdown-group';
 
 export default DropdownGroup;

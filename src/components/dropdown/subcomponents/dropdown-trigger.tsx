@@ -1,8 +1,8 @@
-import { useContext } from 'react';
+import { forwardRef, useContext } from 'react';
 import { dropdownContext } from '../context';
 import { DropdownTriggerProps } from '../type';
 
-const DropdownTrigger = ({ children, onClick, ...props }: DropdownTriggerProps) => {
+const DropdownTrigger = forwardRef<HTMLButtonElement, DropdownTriggerProps>(({ children, onClick, ...props }, ref) => {
   const { toggleMenu } = useContext(dropdownContext);
 
   const handleTriggerClick = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -13,11 +13,11 @@ const DropdownTrigger = ({ children, onClick, ...props }: DropdownTriggerProps) 
   };
 
   return (
-    <button onClick={handleTriggerClick} {...props}>
+    <button onClick={handleTriggerClick} ref={ref} {...props}>
       {children}
     </button>
   );
-};
+});
 DropdownTrigger.displayName = 'dropdown-trigger';
 
 export default DropdownTrigger;
