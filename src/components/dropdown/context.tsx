@@ -18,7 +18,7 @@ const DropdownProvider = ({ children, defaultOpen = false, open, onOpenChange }:
     if (onOpenChange && typeof onOpenChange !== 'function')
       console.warn('onOpenChange should be a function, ignoring invalid handler');
     else if (onOpenChange) onOpenChange(value);
-    if (open === undefined) setInternalOpen(value);
+    if (isControlled) setInternalOpen(value);
   };
 
   const openMenu = () => setOpen(true);
@@ -26,8 +26,8 @@ const DropdownProvider = ({ children, defaultOpen = false, open, onOpenChange }:
   const toggleMenu = () => setOpen(!isOpen);
 
   useEffect(() => {
-    if (open !== undefined) setInternalOpen(open);
-  }, [open]);
+    if (isControlled) setInternalOpen(open);
+  }, [isControlled, open]);
 
   return (
     <dropdownContext.Provider value={{ isOpen, openMenu, closeMenu, toggleMenu }}>{children}</dropdownContext.Provider>
