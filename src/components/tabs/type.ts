@@ -20,6 +20,7 @@ export type TabProps = LiProps &
   ButtonProps & {
     children?: React.ReactNode;
     id: string;
+    as?: React.ElementType;
   };
 
 export type ContentGroupProps = DivProps & {
@@ -32,13 +33,13 @@ export type ContentProps = DivProps & {
 };
 
 export type TabsContextType = {
-  activeTab: string;
+  activeTab: string | undefined;
   handleChange: (newTab: string) => void;
 };
 
 export type TabsProviderProps = {
   children?: React.ReactNode;
-  defaultTab?: string;
+  defaultTab?: string | undefined;
   tab?: string;
   onChange?: (newTab: string) => void;
 };
