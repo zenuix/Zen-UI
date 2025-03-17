@@ -20,10 +20,7 @@ export interface ModalContextType {
   withCloseButton?: boolean;
 }
 
-export type BaseDivProps = HTMLAttributes<HTMLDivElement> & {
-  children?: ReactNode;
-  className?: string;
-};
+export type BaseDivProps = HTMLAttributes<HTMLDivElement>;
 
 export type PolymorphicProps<T extends keyof HTMLElementTagNameMap = 'div'> = HTMLAttributes<
   HTMLElementTagNameMap[T]
