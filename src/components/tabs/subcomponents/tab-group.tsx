@@ -1,7 +1,11 @@
 import { TabGroupProps } from '../type';
 
-const TabGroup = ({ children }: TabGroupProps) => {
-  return <div>{children}</div>;
+const TabGroup = ({ children, ...props }: TabGroupProps) => {
+  return (
+    <ul role="tablist" {...props}>
+      {children}
+    </ul>
+  );
 };
 
 export default TabGroup;

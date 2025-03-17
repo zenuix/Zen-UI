@@ -5,8 +5,8 @@ import Tab from './subcomponents/tab';
 import TabGroup from './subcomponents/tab-group';
 import { TabsComponentProps } from './type';
 
-const TabsComponent = ({ children, defaultTab }: TabsComponentProps) => {
-  return <TabsProvider defaultTab={defaultTab}>{children}</TabsProvider>;
+const TabsComponent = ({ children, ...props }: TabsComponentProps) => {
+  return <TabsProvider {...props}>{children}</TabsProvider>;
 };
 
 const Tabs = Object.assign(TabsComponent, {

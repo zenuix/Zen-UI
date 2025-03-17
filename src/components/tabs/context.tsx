@@ -3,11 +3,20 @@ import { TabsContextType, TabsProviderProps } from './type';
 
 export const TabsContext = createContext<TabsContextType>({
   activeTab: '',
-  setActiveTab: () => {}
+  handleChange() {}
 });
 
-export const TabsProvider = ({ children, defaultTab }: TabsProviderProps) => {
-  const [activeTab, setActiveTab] = useState<string>(defaultTab);
+export const TabsProvider = ({ children, defaultTab, tab, onChange }: TabsProviderProps) => {
+  const initialTab = defaultTab || '';
+  const [internalTab, setInternalTab] = useState<string>(initialTab);
 
-  return <TabsContext.Provider value={{ activeTab, setActiveTab }}>{children}</TabsContext.Provider>;
+  const isControlled = !!tab;
+  const activeTab = isControlled ? tab || initialTab : internalTab;
+
+  const handleChange = (newTab: string) => {
+    if (!isControlled) setInternalTab(newTab);
+    if (onChange) onChange(newTab);
+  };
+
+  return <TabsContext.Provider value={{ activeTab, handleChange }}>{children}</TabsContext.Provider>;
 };

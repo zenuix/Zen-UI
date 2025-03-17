@@ -1,7 +1,7 @@
 import { ContentGroupProps } from '../type';
 
-const ContentGroup = ({ children }: ContentGroupProps) => {
-  return <div>{children}</div>;
+const ContentGroup = ({ children, ...props }: ContentGroupProps) => {
+  return <div {...props}>{children}</div>;
 };
 
 export default ContentGroup;
