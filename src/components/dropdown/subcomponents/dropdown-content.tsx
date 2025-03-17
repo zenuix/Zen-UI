@@ -1,14 +1,17 @@
 import { useContext, forwardRef } from 'react';
 import { dropdownContext } from '../context';
 import { DropdownContentProps } from '../type';
+import { createPortal } from 'react-dom';
 
-const DropdownContent = forwardRef<HTMLDivElement, DropdownContentProps>(({ children, style, ...props }, ref) => {
+const DropdownContent = forwardRef<HTMLDivElement, DropdownContentProps>(({ children, className, ...props }, ref) => {
   const { isOpen } = useContext(dropdownContext);
 
-  return (
-    <div ref={ref} {...props} style={{ display: isOpen ? 'block' : 'none', ...style }}>
+  if (!isOpen) return null;
+  return createPortal(
+    <div ref={ref} className={`dropdown-content ${className}`} {...props}>
       {children}
-    </div>
+    </div>,
+    document.body
   );
 });
 
