@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from 'react';
 import { ModalContextType, ModalProps } from './type';
-import { useEscapeKey } from './hook';
+import { useEscapeKey } from '../../global-hooks';
 
 export const ModalContext = createContext<ModalContextType>({
   isOpen: false,
@@ -29,7 +29,9 @@ export const ModalProvider = ({
   const isOpen = isControlled ? open : internalOpen;
 
   if (open && !onOpenChange)
-    console.warn("Both 'open' and 'onOpenChange' props must be provided together. " + 'Either provide both or none.');
+    console.warn(
+      'You provided `open` prop without an `onOpenChange` handler. This will render a non-interactive modal component.'
+    );
 
   const setOpen = (value: boolean) => {
     if (onOpenChange && typeof onOpenChange !== 'function')
