@@ -1,9 +1,9 @@
-import { forwardRef, useContext } from 'react';
-import { dropdownContext } from '../context';
+import { forwardRef } from 'react';
+import { useDropdownContext } from '../hook';
 import { DropdownTriggerProps } from '../type';
 
 const DropdownTrigger = forwardRef<HTMLButtonElement, DropdownTriggerProps>(({ children, onClick, ...props }, ref) => {
-  const { isOpen, openMenu, triggerId, menuId } = useContext(dropdownContext);
+  const { isOpen, openMenu, triggerId, menuId } = useDropdownContext();
 
   const handleTriggerClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (!!onClick && typeof onClick !== 'function')

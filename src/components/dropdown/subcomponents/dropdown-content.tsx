@@ -1,10 +1,10 @@
-import { useContext, forwardRef } from 'react';
+import { forwardRef } from 'react';
 import { createPortal } from 'react-dom';
-import { dropdownContext } from '../context';
+import { useDropdownContext } from '../hook';
 import { DropdownContentProps } from '../type';
 
 const DropdownContent = forwardRef<HTMLDivElement, DropdownContentProps>(({ children, className, ...props }, ref) => {
-  const { isOpen, triggerId, menuId } = useContext(dropdownContext);
+  const { isOpen, triggerId, menuId } = useDropdownContext();
 
   if (!isOpen) return null;
   return createPortal(

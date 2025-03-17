@@ -1,9 +1,9 @@
-import { forwardRef, useContext } from 'react';
-import { dropdownContext } from '../context';
+import { forwardRef } from 'react';
+import { useDropdownContext } from '../hook';
 import { DropdownItemProps } from '../type';
 
 const DropdownItem = forwardRef<HTMLLIElement, DropdownItemProps>(({ children, onClick, ...props }, ref) => {
-  const { closeMenu } = useContext(dropdownContext);
+  const { closeMenu } = useDropdownContext();
 
   const handleDropdownItemClick = (e: React.MouseEvent<HTMLLIElement>) => {
     if (!!onClick && typeof onClick !== 'function')
