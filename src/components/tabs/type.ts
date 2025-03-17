@@ -3,7 +3,6 @@ import { ReactElement } from 'react';
 type DivProps = React.HTMLAttributes<HTMLDivElement>;
 type ButtonProps = React.HTMLAttributes<HTMLButtonElement>;
 type UlProps = React.HTMLAttributes<HTMLUListElement>;
-type LiProps = React.HTMLAttributes<HTMLLIElement>;
 
 export type TabsComponentProps = {
   children: [ReactElement<TabGroupProps>, ReactElement<ContentGroupProps>];
@@ -16,19 +15,16 @@ export type TabGroupProps = UlProps & {
   children: ReactElement<TabProps> | ReactElement<TabProps>[];
 };
 
-export type TabProps = LiProps &
-  ButtonProps & {
-    children?: React.ReactNode;
-    id: string;
-    as?: React.ElementType;
-  };
+export type TabProps<T extends keyof HTMLElementTagNameMap = 'button'> = ButtonProps & {
+  id: string;
+  as?: T;
+} & React.HTMLAttributes<HTMLElementTagNameMap[T]>;
 
 export type ContentGroupProps = DivProps & {
   children: ReactElement<ContentProps> | ReactElement<ContentProps>[];
 };
 
 export type ContentProps = DivProps & {
-  children?: React.ReactNode;
   id: string;
 };
 
