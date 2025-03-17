@@ -1,10 +1,9 @@
 import { forwardRef } from 'react';
-
-type DropdownGroupProps = React.HtmlHTMLAttributes<HTMLUListElement> & {};
+import { DropdownGroupProps } from '../type';
 
 const DropdownGroup = forwardRef<HTMLUListElement, DropdownGroupProps>(({ children, ...props }, ref) => {
   return (
-    <ul ref={ref} {...props}>
+    <ul role="group" ref={ref} {...props}>
       {children}
     </ul>
   );

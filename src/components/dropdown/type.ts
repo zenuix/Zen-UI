@@ -14,6 +14,8 @@ export type DropdownSeparatorProps = HrProps & {};
 
 export type DropdownContextType = {
   isOpen: boolean;
+  triggerId: string;
+  menuId: string;
   openMenu: () => void;
   closeMenu: () => void;
   toggleMenu: () => void;

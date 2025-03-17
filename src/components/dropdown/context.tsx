@@ -1,8 +1,10 @@
-import { createContext, useState } from 'react';
+import { createContext, useId, useState } from 'react';
 import { DropdownProps, DropdownContextType } from './type';
 
 export const dropdownContext = createContext<DropdownContextType>({
   isOpen: false,
+  triggerId: '',
+  menuId: '',
   openMenu() {},
   closeMenu() {},
   toggleMenu() {}
@@ -13,6 +15,9 @@ const DropdownProvider = ({ children, defaultOpen = false, open, onOpenChange }:
 
   const isControlled = open !== undefined;
   const isOpen = isControlled ? open : internalOpen;
+
+  const triggerId = useId();
+  const menuId = useId();
 
   if (isControlled && !onOpenChange)
     console.warn(
@@ -31,7 +36,9 @@ const DropdownProvider = ({ children, defaultOpen = false, open, onOpenChange }:
   const toggleMenu = () => setOpen(!isOpen);
 
   return (
-    <dropdownContext.Provider value={{ isOpen, openMenu, closeMenu, toggleMenu }}>{children}</dropdownContext.Provider>
+    <dropdownContext.Provider value={{ isOpen, triggerId, menuId, openMenu, closeMenu, toggleMenu }}>
+      {children}
+    </dropdownContext.Provider>
   );
 };
 export default DropdownProvider;

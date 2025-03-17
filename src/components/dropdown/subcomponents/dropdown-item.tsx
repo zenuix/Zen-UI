@@ -13,7 +13,7 @@ const DropdownItem = forwardRef<HTMLLIElement, DropdownItemProps>(({ children, o
   };
 
   return (
-    <li onClick={handleDropdownItemClick} ref={ref} {...props}>
+    <li role="menuitem" ref={ref} onClick={handleDropdownItemClick} {...props}>
       {children}
     </li>
   );
