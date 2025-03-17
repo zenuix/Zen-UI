@@ -10,19 +10,17 @@
   list-style: none;
   padding: 0;
   margin: 0;
+  align-items: center
 }
 
-.breadcrumb-horizontal {
-  display: flex;
+.direction-row {
+  flex-direction: row;
   gap: 4px;
-  align-items: center;
 }
 
-.breadcrumb-vertical {
-  display: flex;
+.direction-col {
   flex-direction: column;
   gap: 8px;
-  align-items: flex-start;
 }
 
 .breadcrumb-item {
@@ -32,7 +30,7 @@
 
 .breadcrumb-link {
   text-decoration: none;
-  color: #333;
+  color: gray;
   font-weight: 500;
 }
 

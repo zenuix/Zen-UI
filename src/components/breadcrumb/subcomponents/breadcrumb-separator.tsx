@@ -6,7 +6,7 @@ interface BreadcrumbSeparatorProps extends React.HTMLAttributes<HTMLSpanElement>
 
 const BreadcrumbSeparator: React.FC<BreadcrumbSeparatorProps> = ({ children = '>', ...props }) => {
   return (
-    <span {...props} className="breadcrumb-separator" aria-hidden="true">
+    <span {...props} className="breadcrumb-separator" role="presentation" aria-hidden="true">
       {children}
     </span>
   );

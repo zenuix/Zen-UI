@@ -28,6 +28,30 @@ const DefaultTemplate: StoryFn = () => (
 
 export const Default = DefaultTemplate.bind({})
 
+const DirectionTemplate: StoryFn = () => (
+  <Breadcrumb>
+    <Breadcrumb.List direction='col'>
+      <Breadcrumb.Item>
+        <Breadcrumb.Link href="/">Home</Breadcrumb.Link>
+      </Breadcrumb.Item>
+      <Breadcrumb.Separator>
+        {'⏬'}
+      </Breadcrumb.Separator>
+      <Breadcrumb.Item>
+        <Breadcrumb.Link href="/products">Products</Breadcrumb.Link>
+      </Breadcrumb.Item>
+      <Breadcrumb.Separator>
+        {'⏬'}
+      </Breadcrumb.Separator>
+      <Breadcrumb.Item>
+        <Breadcrumb.Page>Category</Breadcrumb.Page>
+      </Breadcrumb.Item>
+    </Breadcrumb.List>
+  </Breadcrumb>
+);
+
+export const Direction = DirectionTemplate.bind({})
+
 const CustomSeparatorTemplate: StoryFn = () => (
   <Breadcrumb>
     <Breadcrumb.List>
