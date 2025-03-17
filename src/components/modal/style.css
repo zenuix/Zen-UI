@@ -1,49 +1,85 @@
+.modal-content {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.8);
+  background-color: white;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 100;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.modal-content.open {
+  animation: fadeInScale 0.3s ease-in-out forwards;
+  visibility: visible;
+}
+
+.modal-content.close {
+  animation: fadeOutScale 0.3s ease-in-out forwards;
+  visibility: visible;
+}
+
 .modal-overlay {
   position: fixed;
   inset: 0;
   width: 100vw;
   height: 100vh;
-  align-items: center;
-  justify-content: center;
   background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
   z-index: 50;
-  opacity: 0;
-  pointer-events: none;
-  display: none;
-}
-
-.modal-container {
-  display: none;
-  opacity: 0;
-  background-color: white;
-  transform: scale(0.8);
 }
 
 .modal-overlay.open {
-  display: flex;
-  animation: fadeIn 0.2s ease-in-out forwards;
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.modal-container.open {
-  display: block;
-  animation: scaleUp 0.2s ease-in-out forwards;
-  opacity: 1;
-  transform: scale(1);
+  animation: fadeIn 0.3s ease-in-out forwards;
+  visibility: visible;
 }
 
 .modal-overlay.close {
+  animation: fadeOut 0.3s ease-in-out forwards;
+  visibility: visible;
+}
+
+.modal-close-btn {
+  position: absolute;
   display: flex;
-
-  animation: fadeOut 0.2s ease-in-out forwards;
+  top: 10px;
+  right: 10px;
+  border: none;
+  padding: 0;
+  background: none;
+  cursor: pointer;
+  font-size: 18px;
 }
 
-.modal-container.close {
-  display: block;
-  animation: scaleDown 0.2s ease-in-out forwards;
+/* 모달 열리는 애니메이션 */
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
 }
 
+/* 모달 닫히는 애니메이션 */
+@keyframes fadeOutScale {
+  from {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+}
+
+/* 오버레이 열리는 애니메이션 */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -53,6 +89,7 @@
   }
 }
 
+/* 오버레이 닫히는 애니메이션 */
 @keyframes fadeOut {
   from {
     opacity: 1;
@@ -60,32 +97,4 @@
   to {
     opacity: 0;
   }
-}
-
-@keyframes scaleUp {
-  from {
-    opacity: 0;
-    transform: scale(0.8);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes scaleDown {
-  from {
-    opacity: 1;
-    transform: scale(1);
-  }
-  to {
-    opacity: 0;
-    transform: scale(0.8);
-  }
-}
-
-.modal-close-btn {
-  border: none;
-  background: none;
-  cursor: pointer;
 }
