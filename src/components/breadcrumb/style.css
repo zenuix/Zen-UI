@@ -1,0 +1,47 @@
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+}
+
+.breadcrumb-list {
+  display: flex;
+  gap: 4px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.breadcrumb-horizontal {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.breadcrumb-vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.breadcrumb-item {
+  display: flex;
+  align-items: center;
+}
+
+.breadcrumb-link {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+}
+
+.breadcrumb-separator {
+  margin: 0 4px;
+  color: #6c757d;
+}
+
+.breadcrumb-page {
+  font-weight: bold;
+  color: #333;
+}
