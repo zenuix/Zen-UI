@@ -1,26 +1,28 @@
+@import url('../../global-style.css');
+
 .breadcrumb {
   display: flex;
   align-items: center;
-  font-size: 14px;
+  font-size: var(--zen-font-size-medium);
 }
 
 .breadcrumb-list {
   display: flex;
-  gap: 4px;
-  list-style: none;
+  align-items: center;
+  gap: var(--zen-spacing-small);
   padding: 0;
   margin: 0;
-  align-items: center;
+  list-style: none;
 }
 
 .direction-row {
   flex-direction: row;
-  gap: 4px;
+  gap: var(--zen-spacing-small);
 }
 
 .direction-col {
   flex-direction: column;
-  gap: 8px;
+  gap: var(--zen-spacing-medium);
 }
 
 .breadcrumb-item {
@@ -30,21 +32,20 @@
 
 .breadcrumb-link {
   text-decoration: none;
-  color: gray;
-  font-weight: 500;
+  color: var(--zen-color-secondary);
 }
 
 .breadcrumb-separator {
-  margin: 0 4px;
-  color: #6c757d;
+  margin: 0 var(--zen-spacing-small);
+  color: var(--zen-color-secondary);
   height: 100%;
   display: flex;
   align-items: center;
 }
 
 .breadcrumb-ellipsis {
-  margin: 0 4px;
-  color: #6c757d;
+  margin: 0 var(--zen-spacing-small);
+  color: var(--zen-color-secondary);
   height: 100%;
   display: flex;
   align-items: center;
@@ -53,5 +54,5 @@
 
 .breadcrumb-page {
   font-weight: bold;
-  color: #333;
+  color: var(--zen-color-primary);
 }
