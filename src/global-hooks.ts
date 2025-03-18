@@ -75,17 +75,20 @@ export const useFocusTrap = (elementRef: React.RefObject<HTMLElement | null>, is
  * @param {Object} elementRef - 외부 클릭 여부를 판단할 DOM 요소의 ref 객체입니다.
  * @param {Function} callback - 외부 클릭이 감지되었을 때 실행될 함수입니다.
  */
-export const useOutsideClick = (elementRef: React.RefObject<HTMLElement | null>, callback: () => void) => {
+export const useOutsideClick = (
+  elementRef: React.RefObject<HTMLElement | null>,
+  callback: (event: MouseEvent) => void
+) => {
   useEffect(() => {
     const handleClick = (event: MouseEvent) => {
       if (elementRef.current && !elementRef.current.contains(event.target as Node)) {
-        callback();
+        callback(event);
       }
     };
 
-    document.addEventListener('mousedown', handleClick);
+    document.addEventListener('click', handleClick);
     return () => {
-      document.removeEventListener('mousedown', handleClick);
+      document.removeEventListener('click', handleClick);
     };
   }, [elementRef, callback]);
 };
