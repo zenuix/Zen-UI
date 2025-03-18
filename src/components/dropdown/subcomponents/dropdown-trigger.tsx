@@ -1,9 +1,9 @@
-import { forwardRef } from 'react';
+import { forwardRef, useEffect } from 'react';
 import { useDropdownContext } from '../hook';
 import { DropdownTriggerProps } from '../type';
 
 const DropdownTrigger = forwardRef<HTMLButtonElement, DropdownTriggerProps>(({ children, onClick, ...props }, ref) => {
-  const { isOpen, openMenu, triggerId, menuId } = useDropdownContext();
+  const { isOpen, triggerId, menuId, triggerRef, openMenu } = useDropdownContext();
 
   const handleTriggerClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (!!onClick && typeof onClick !== 'function')
@@ -12,10 +12,16 @@ const DropdownTrigger = forwardRef<HTMLButtonElement, DropdownTriggerProps>(({ c
     openMenu();
   };
 
+  useEffect(() => {
+    if (!triggerRef || !ref) return;
+    if (typeof ref === 'function') ref(triggerRef.current);
+    else ref.current = triggerRef.current;
+  }, [ref, isOpen]);
+
   return (
     <button
       id={triggerId}
-      ref={ref}
+      ref={triggerRef}
       onClick={handleTriggerClick}
       aria-haspopup="menu"
       aria-expanded={isOpen}

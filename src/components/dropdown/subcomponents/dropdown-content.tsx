@@ -1,13 +1,26 @@
-import { forwardRef, useEffect } from 'react';
+import { forwardRef, useEffect, useLayoutEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { useDropdownContext } from '../hook';
 import { DropdownContentProps } from '../type';
+import { useFocusTrap } from '../../../global-hooks';
 
 const DropdownContent = forwardRef<HTMLDivElement, DropdownContentProps>(({ children, className, ...props }, ref) => {
   const { isOpen, triggerId, menuId, triggerRef, menuRef } = useDropdownContext();
 
+  const positionDropdown = () => {
+    if (!triggerRef || !triggerRef.current || !menuRef || !menuRef.current) return;
 
-  if (isOpen) positionDropdown();
+    const triggerRect = triggerRef.current.getBoundingClientRect();
+
+    menuRef.current.style.top = `${triggerRect.bottom + window.scrollY}px`;
+    menuRef.current.style.left = `${triggerRect.left + window.scrollX}px`;
+  };
+
+  useLayoutEffect(() => {
+    if (isOpen) {
+      positionDropdown();
+    }
+  }, [isOpen, positionDropdown]);
 
   useFocusTrap(menuRef as React.RefObject<HTMLDivElement | null>, isOpen);
 
