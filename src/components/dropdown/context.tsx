@@ -1,4 +1,5 @@
 import { createContext, useId, useRef, useState } from 'react';
+import { useEscapeKey } from '../../global-hooks';
 import { DropdownProps, DropdownContextType } from './type';
 
 export const dropdownContext = createContext<DropdownContextType>({
@@ -51,6 +52,8 @@ const DropdownProvider = ({
   const openMenu = () => setOpen(true);
   const closeMenu = () => setOpen(false);
   const toggleMenu = () => setOpen(!isOpen);
+
+  useEscapeKey(closeMenu, isOpen);
 
   return (
     <dropdownContext.Provider
