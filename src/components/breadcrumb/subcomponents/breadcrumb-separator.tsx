@@ -1,11 +1,9 @@
 import { ChevronRight } from 'lucide-react';
-import React, { ReactNode } from 'react';
+import React from 'react';
 
-interface BreadcrumbSeparatorProps extends React.HTMLAttributes<HTMLSpanElement> {
-  children?: ReactNode;
-}
+type BreadcrumbSeparatorProps = React.HTMLAttributes<HTMLSpanElement> & {};
 
-const BreadcrumbSeparator: React.FC<BreadcrumbSeparatorProps> = ({ children, ...props }) => {
+const BreadcrumbSeparator = ({ children, ...props }: BreadcrumbSeparatorProps) => {
   return (
     <span {...props} className="breadcrumb-separator" role="presentation" aria-hidden="true">
       {children ?? <ChevronRight size={16} />}

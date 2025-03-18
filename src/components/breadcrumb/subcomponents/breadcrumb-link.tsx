@@ -1,8 +1,8 @@
 import React from 'react';
 
-interface BreadcrumbLinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {}
+type BreadcrumbLinkProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & {};
 
-const BreadcrumbLink: React.FC<BreadcrumbLinkProps> = ({ children, ...props }) => {
+const BreadcrumbLink = ({ children, ...props }: BreadcrumbLinkProps) => {
   return (
     <a {...props} className="breadcrumb-link" role="listitem navigation">
       {children}

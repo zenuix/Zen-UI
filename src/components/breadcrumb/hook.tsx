@@ -1,14 +1,7 @@
 import React, { ReactElement, ReactNode, useState } from 'react';
 import BreadcrumbEllipsis from './subcomponents/breadcrumb-ellipsis';
 import { Ellipsis } from 'lucide-react';
-
-interface UseBreadcrumbCollapseProps {
-  children: ReactNode[];
-  maxItems: number;
-  itemsBeforeCollapse: number;
-  itemsAfterCollapse: number;
-  ellipsisStyle?: ReactElement | string;
-}
+import UseBreadcrumbCollapseProps from './type';
 
 export const useBreadcrumbCollapse = ({
   children,
@@ -35,6 +28,12 @@ export const useBreadcrumbCollapse = ({
   const isCollapse = items.length > maxItems && !isExpanded;
   let visibleItems: ReactNode[] = children;
 
+  /**TODO
+   * maxItems 삭제
+   * itemsBeforeCollapse 또는 itemsAfterCollapse가 props로 내려올 시 축소
+   * 이외의 경우에는 축소 x
+   * 위 변수들에 대한 검증로직 추가
+   */
   if (isCollapse) {
     const beforeIndex = children.findIndex((child) => child === items[itemsBeforeCollapse]);
     const afterIndex = children.findIndex((child) => child === items[items.length - itemsAfterCollapse]);

@@ -1,8 +1,8 @@
 import React from 'react';
 
-interface BreadcrumbItemProps extends React.LiHTMLAttributes<HTMLLIElement> {}
+type BreadcrumbItemProps = React.HTMLAttributes<HTMLLIElement> & {};
 
-const BreadcrumbItem: React.FC<BreadcrumbItemProps> = ({ children, ...props }) => {
+const BreadcrumbItem = ({ children, ...props }: BreadcrumbItemProps) => {
   return (
     <li {...props} className="breadcrumb-item">
       {children}

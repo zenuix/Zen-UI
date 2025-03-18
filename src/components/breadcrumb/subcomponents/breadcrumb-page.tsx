@@ -1,8 +1,8 @@
 import React from 'react';
 
-interface BreadcrumbPageProps extends React.HTMLAttributes<HTMLSpanElement> {}
+type BreadcrumbPageProps = React.HTMLAttributes<HTMLSpanElement> & {};
 
-const BreadcrumbPage: React.FC<BreadcrumbPageProps> = ({ children, ...props }) => {
+const BreadcrumbPage = ({ children, ...props }: BreadcrumbPageProps) => {
   return (
     <span {...props} className="breadcrumb-page" role="listitem" aria-current="page">
       {children}

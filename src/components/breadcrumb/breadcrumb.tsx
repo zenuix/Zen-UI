@@ -1,8 +1,8 @@
 import React from 'react';
 
-interface BreadcrumbProps extends React.HTMLAttributes<HTMLElement> {}
+type BreadcrumbProps = React.HTMLAttributes<HTMLElement> & {};
 
-const BreadcrumbContainer: React.FC<BreadcrumbProps> = ({ children, ...props }) => {
+const BreadcrumbContainer = ({ children, ...props }: BreadcrumbProps) => {
   return (
     <nav aria-label="breadcrumb" {...props} className="breadcrumb">
       {children}
