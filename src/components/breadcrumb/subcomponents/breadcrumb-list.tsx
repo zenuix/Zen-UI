@@ -14,7 +14,7 @@ const BreadcrumbList = ({
   children,
   className,
   direction = 'row',
-  maxItems = 4,
+  maxItems,
   itemsBeforeCollapse = 1,
   itemsAfterCollapse = 2,
   ellipsisStyle,
