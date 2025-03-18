@@ -2,10 +2,10 @@ import { forwardRef, useEffect, useLayoutEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { useDropdownContext } from '../hook';
 import { DropdownContentProps } from '../type';
-import { useFocusTrap } from '../../../global-hooks';
+import { useFocusTrap, useOutsideClick } from '../../../global-hooks';
 
 const DropdownContent = forwardRef<HTMLDivElement, DropdownContentProps>(({ children, className, ...props }, ref) => {
-  const { isOpen, triggerId, menuId, triggerRef, menuRef } = useDropdownContext();
+  const { isOpen, triggerId, menuId, triggerRef, menuRef, closeMenu } = useDropdownContext();
 
   const positionDropdown = () => {
     if (!triggerRef || !triggerRef.current || !menuRef || !menuRef.current) return;
@@ -23,6 +23,12 @@ const DropdownContent = forwardRef<HTMLDivElement, DropdownContentProps>(({ chil
   }, [isOpen, positionDropdown]);
 
   useFocusTrap(menuRef as React.RefObject<HTMLDivElement | null>, isOpen);
+
+  useOutsideClick(menuRef as React.RefObject<HTMLDivElement | null>, (event) => {
+    if (!triggerRef || !menuRef) return;
+    if (triggerRef.current?.contains(event.target as Node) || menuRef.current?.contains(event.target as Node)) return;
+    if (isOpen) closeMenu();
+  });
 
   useEffect(() => {
     if (!menuRef || !ref) return;

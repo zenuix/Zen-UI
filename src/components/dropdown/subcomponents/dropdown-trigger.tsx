@@ -3,13 +3,13 @@ import { useDropdownContext } from '../hook';
 import { DropdownTriggerProps } from '../type';
 
 const DropdownTrigger = forwardRef<HTMLButtonElement, DropdownTriggerProps>(({ children, onClick, ...props }, ref) => {
-  const { isOpen, triggerId, menuId, triggerRef, openMenu } = useDropdownContext();
+  const { isOpen, triggerId, menuId, triggerRef, toggleMenu } = useDropdownContext();
 
   const handleTriggerClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (!!onClick && typeof onClick !== 'function')
       console.warn('onClick should be a function, ignoring invalid handler');
     else if (!!onClick) onClick(e);
-    openMenu();
+    toggleMenu();
   };
 
   useEffect(() => {
