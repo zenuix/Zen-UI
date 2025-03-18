@@ -33,6 +33,7 @@ export const useBreadcrumbCollapse = ({
    * itemsBeforeCollapse 또는 itemsAfterCollapse가 props로 내려올 시 축소
    * 이외의 경우에는 축소 x
    * 위 변수들에 대한 검증로직 추가
+   * index !== -1 검증 삭제 + items가 빈 배열일 경우 접근시 undefined 나오는 문제 해결
    */
   if (isCollapse) {
     const beforeIndex = children.findIndex((child) => child === items[itemsBeforeCollapse]);
@@ -44,7 +45,7 @@ export const useBreadcrumbCollapse = ({
     if (before < after) {
       visibleItems = [
         ...children.slice(0, before),
-        <BreadcrumbEllipsis key="ellipsis" onClick={() => setIsExpanded(true)}>
+        <BreadcrumbEllipsis onClick={() => setIsExpanded(true)}>
           {ellipsisStyle ?? <Ellipsis size={16} />}
         </BreadcrumbEllipsis>,
         ...children.slice(after - 1)
