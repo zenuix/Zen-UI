@@ -1,14 +1,20 @@
-import { forwardRef } from 'react';
+import { ElementType, forwardRef, Ref } from 'react';
+import { DropdownGroupProps, ListType } from '../type';
 
-type DropdownGroupProps = React.HtmlHTMLAttributes<HTMLUListElement> & {};
+const DropdownGroupInner = <T extends ListType = 'ul'>(
+  { children, as = 'ul' as T, ...props }: DropdownGroupProps<T>,
+  ref: Ref<HTMLElementTagNameMap[T]>
+) => {
+  const Component = as as ElementType;
 
-const DropdownGroup = forwardRef<HTMLUListElement, DropdownGroupProps>(({ children, ...props }, ref) => {
   return (
-    <ul ref={ref} {...props}>
+    <Component role="group" ref={ref} {...props}>
       {children}
-    </ul>
+    </Component>
   );
-});
-DropdownGroup.displayName = 'dropdown-group';
+};
+
+const DropdownGroup = forwardRef(DropdownGroupInner);
+DropdownGroup.displayName = 'DropdownGroup';
 
 export default DropdownGroup;

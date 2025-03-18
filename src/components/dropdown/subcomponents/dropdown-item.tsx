@@ -1,11 +1,15 @@
-import { forwardRef, useContext } from 'react';
-import { dropdownContext } from '../context';
-import { DropdownItemProps } from '../type';
+import { ElementType, forwardRef, Ref } from 'react';
+import { useDropdownContext } from '../hook';
+import { DropdownItemProps, ItemType } from '../type';
 
-const DropdownItem = forwardRef<HTMLLIElement, DropdownItemProps>(({ children, onClick, ...props }, ref) => {
-  const { closeMenu } = useContext(dropdownContext);
+const DropdownItemInner = <T extends ItemType>(
+  { children, as = 'li' as T, onClick, ...props }: DropdownItemProps<T>,
+  ref: Ref<HTMLElementTagNameMap[T]>
+) => {
+  const Component = as as ElementType;
+  const { closeMenu } = useDropdownContext();
 
-  const handleDropdownItemClick = (e: React.MouseEvent<HTMLLIElement>) => {
+  const handleDropdownItemClick = (e: React.MouseEvent<HTMLElementTagNameMap[T]>) => {
     if (!!onClick && typeof onClick !== 'function')
       console.warn('onClick should be a function, ignoring invalid handler');
     else if (!!onClick) onClick(e);
@@ -13,11 +17,13 @@ const DropdownItem = forwardRef<HTMLLIElement, DropdownItemProps>(({ children, o
   };
 
   return (
-    <li onClick={handleDropdownItemClick} ref={ref} {...props}>
+    <Component role="menuitem" ref={ref} onClick={handleDropdownItemClick} {...props}>
       {children}
-    </li>
+    </Component>
   );
-});
+};
+
+const DropdownItem = forwardRef(DropdownItemInner);
 DropdownItem.displayName = 'dropdown-item';
 
 export default DropdownItem;
