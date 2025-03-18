@@ -1,0 +1,58 @@
+@import url('../../global-style.css');
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  font-size: var(--zen-font-size-medium);
+}
+
+.breadcrumb-list {
+  display: flex;
+  align-items: center;
+  gap: var(--zen-spacing-small);
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.direction-row {
+  flex-direction: row;
+  gap: var(--zen-spacing-small);
+}
+
+.direction-col {
+  flex-direction: column;
+  gap: var(--zen-spacing-medium);
+}
+
+.breadcrumb-item {
+  display: flex;
+  align-items: center;
+}
+
+.breadcrumb-link {
+  text-decoration: none;
+  color: var(--zen-color-secondary);
+}
+
+.breadcrumb-separator {
+  margin: 0 var(--zen-spacing-small);
+  color: var(--zen-color-secondary);
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.breadcrumb-ellipsis {
+  margin: 0 var(--zen-spacing-small);
+  color: var(--zen-color-secondary);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.breadcrumb-page {
+  font-weight: bold;
+  color: var(--zen-color-primary);
+}
