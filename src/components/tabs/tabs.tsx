@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { TabsProvider } from './context';
 import { TabsComponentProps } from './type';
 import { findFirstTabId } from './utils';
@@ -7,7 +8,7 @@ const TabsComponent = ({ children, defaultTab, ...props }: TabsComponentProps) =
 
   return (
     <TabsProvider defaultTab={initialTab} {...props}>
-      {children}
+      <div className={clsx('tabs')}>{children}</div>
     </TabsProvider>
   );
 };

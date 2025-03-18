@@ -1,0 +1,55 @@
+@import '../../global-style.css';
+
+.tabs {
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  padding: var(--zen-spacing-large);
+}
+
+.tab-group {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  box-sizing: border-box;
+  gap: var(--zen-spacing-medium);
+  padding: 0;
+  margin: 0;
+}
+
+.tab {
+  font-size: var(--zen-font-size-medium);
+  margin: var(--zen-spacing-medium) 0;
+}
+
+.tab-button {
+  width: 100%;
+  padding: var(--zen-spacing-medium) var(--zen-spacing-large);
+  border: none;
+  border-radius: var(--zen-border-radius-large);
+  color: var(--zen-color-black);
+  background-color: transparent;
+  font-size: var(--zen-font-size-medium);
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--zen-color-white);
+  }
+}
+
+.content-group {
+  background-color: var(--zen-color-white);
+  padding: var(--zen-spacing-large);
+  border-radius: var(--zen-border-radius-large);
+}
+
+.content {
+  width: 100%;
+  font-size: var(--zen-font-size-medium);
+}
+
+/* 아래는 조건부로 적용할 css */
+
+.bg-gray {
+  background-color: var(--zen-color-white);
+}

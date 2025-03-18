@@ -1,6 +1,7 @@
 import { ElementType, useContext } from 'react';
 import { TabProps } from '../type';
 import { TabsContext } from '../context';
+import clsx from 'clsx';
 
 const Tab = <T extends keyof HTMLElementTagNameMap = 'button'>({
   children,
@@ -8,7 +9,7 @@ const Tab = <T extends keyof HTMLElementTagNameMap = 'button'>({
   as = 'button' as T,
   ...props
 }: TabProps<T>) => {
-  const { handleChange } = useContext(TabsContext);
+  const { activeTab, handleChange } = useContext(TabsContext);
   const Tag = as as ElementType;
 
   if (typeof id !== 'string') {
@@ -16,8 +17,13 @@ const Tab = <T extends keyof HTMLElementTagNameMap = 'button'>({
   }
 
   return (
-    <li role="presentation">
-      <Tag role="tab" onClick={() => handleChange(id)} {...props}>
+    <li role="presentation" className={clsx('tab')}>
+      <Tag
+        role="tab"
+        onClick={() => handleChange(id)}
+        className={clsx('tab-button', { 'bg-gray': activeTab === id })}
+        {...props}
+      >
         {children}
       </Tag>
     </li>
