@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import '../style.css';
 import { DivProps } from '../type';
 import { ReactElement } from 'react';
 import { ContentProps } from './content';

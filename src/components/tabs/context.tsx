@@ -3,21 +3,24 @@ import { createContext, useState } from 'react';
 type TabsContextType = {
   activeTab: string | undefined;
   handleChange: (newTab: string) => void;
+  orientation: 'vertical' | 'horizontal';
 };
 
 export const TabsContext = createContext<TabsContextType>({
   activeTab: undefined,
-  handleChange() {}
+  handleChange() {},
+  orientation: 'vertical'
 });
 
 type TabsProviderProps = {
   children?: React.ReactNode;
+  orientation?: 'vertical' | 'horizontal';
   defaultTab?: string | undefined;
   tab?: string;
   onChange?: (newTab: string) => void;
 };
 
-export const TabsProvider = ({ children, defaultTab, tab, onChange }: TabsProviderProps) => {
+export const TabsProvider = ({ children, defaultTab, orientation = 'vertical', tab, onChange }: TabsProviderProps) => {
   const [internalTab, setInternalTab] = useState<string | undefined>(defaultTab);
 
   if (defaultTab === undefined && tab === undefined) {
@@ -41,5 +44,5 @@ export const TabsProvider = ({ children, defaultTab, tab, onChange }: TabsProvid
     }
   };
 
-  return <TabsContext.Provider value={{ activeTab, handleChange }}>{children}</TabsContext.Provider>;
+  return <TabsContext.Provider value={{ activeTab, handleChange, orientation }}>{children}</TabsContext.Provider>;
 };

@@ -1,10 +1,10 @@
 @import '../../global-style.css';
 
 .tabs {
-  width: 500px;
   display: flex;
-  flex-direction: column;
   padding: var(--zen-spacing-large);
+  gap: var(--zen-spacing-medium);
+  color: var(--zen-color-black);
 }
 
 .tab-group {
@@ -15,11 +15,11 @@
   gap: var(--zen-spacing-medium);
   padding: 0;
   margin: 0;
+  flex-shrink: 0;
 }
 
 .tab {
   font-size: var(--zen-font-size-medium);
-  margin: var(--zen-spacing-medium) 0;
 }
 
 .tab-button {
@@ -52,4 +52,30 @@
 
 .bg-gray {
   background-color: var(--zen-color-white);
+}
+
+.vertical-tabs {
+  flex-direction: column;
+}
+
+.horizontal-tabs {
+  flex-direction: row;
+}
+
+.vertical-tab-group {
+  flex-direction: row;
+  overflow-x: auto;
+  white-space: nowrap;
+  scrollbar-width: none;
+}
+
+.horizontal-tab-group {
+  flex-direction: column;
+  overflow-y: auto;
+  white-space: nowrap;
+  scrollbar-width: none;
+}
+
+.flex-row {
+  flex-direction: row;
 }

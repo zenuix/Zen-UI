@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import '../style.css';
 import { ElementType, useContext } from 'react';
 import { TabsContext } from '../context';
 import { ButtonProps } from '../type';
