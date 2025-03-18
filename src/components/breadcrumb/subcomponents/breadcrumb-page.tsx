@@ -1,10 +1,11 @@
 import React from 'react';
+import clsx from 'clsx';
 
 type BreadcrumbPageProps = React.HTMLAttributes<HTMLSpanElement> & {};
 
-const BreadcrumbPage = ({ children, ...props }: BreadcrumbPageProps) => {
+const BreadcrumbPage = ({ children, className, ...props }: BreadcrumbPageProps) => {
   return (
-    <span {...props} className="breadcrumb-page" role="listitem" aria-current="page">
+    <span {...props} className={clsx('breadcrumb-page', className)} role="listitem" aria-current="page">
       {children}
     </span>
   );

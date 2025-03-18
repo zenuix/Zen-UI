@@ -7,12 +7,12 @@ import BreadcrumbSeparator from './subcomponents/breadcrumb-separator';
 import BreadcrumbEllipsis from './subcomponents/breadcrumb-ellipsis';
 
 const Breadcrumb = Object.assign(BreadcrumbContainer, {
-  List: BreadcrumbList,
-  Item: BreadcrumbItem,
-  Link: BreadcrumbLink,
-  Separator: BreadcrumbSeparator,
-  Page: BreadcrumbPage,
-  Ellipsis: BreadcrumbEllipsis
+  list: BreadcrumbList,
+  item: BreadcrumbItem,
+  link: BreadcrumbLink,
+  separator: BreadcrumbSeparator,
+  page: BreadcrumbPage,
+  ellipsis: BreadcrumbEllipsis
 });
 
 export default Breadcrumb;

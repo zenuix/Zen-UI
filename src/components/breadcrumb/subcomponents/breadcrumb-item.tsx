@@ -1,10 +1,11 @@
 import React from 'react';
+import clsx from 'clsx';
 
 type BreadcrumbItemProps = React.HTMLAttributes<HTMLLIElement> & {};
 
-const BreadcrumbItem = ({ children, ...props }: BreadcrumbItemProps) => {
+const BreadcrumbItem = ({ children, className, ...props }: BreadcrumbItemProps) => {
   return (
-    <li {...props} className="breadcrumb-item">
+    <li {...props} className={clsx('breadcrumb-item', className)}>
       {children}
     </li>
   );

@@ -8,10 +8,11 @@ type BreadcrumbListProps = React.HTMLAttributes<HTMLUListElement> & {
   itemsBeforeCollapse?: number;
   itemsAfterCollapse?: number;
   ellipsisStyle?: ReactElement | string;
-}
+};
 
 const BreadcrumbList = ({
   children,
+  className,
   direction = 'row',
   maxItems = 4,
   itemsBeforeCollapse = 1,
@@ -30,10 +31,11 @@ const BreadcrumbList = ({
   return (
     <ul
       {...props}
-      className={clsx('breadcrumb-list', {
+      className={clsx('breadcrumb-list', className, {
         'direction-row': direction === 'row',
         'direction-col': direction === 'col'
       })}
+      role="list"
     >
       {visibleItems}
     </ul>

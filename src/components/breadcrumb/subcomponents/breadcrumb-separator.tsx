@@ -1,11 +1,12 @@
-import { ChevronRight } from 'lucide-react';
 import React from 'react';
+import clsx from 'clsx';
+import { ChevronRight } from 'lucide-react';
 
 type BreadcrumbSeparatorProps = React.HTMLAttributes<HTMLSpanElement> & {};
 
-const BreadcrumbSeparator = ({ children, ...props }: BreadcrumbSeparatorProps) => {
+const BreadcrumbSeparator = ({ children, className, ...props }: BreadcrumbSeparatorProps) => {
   return (
-    <span {...props} className="breadcrumb-separator" role="presentation" aria-hidden="true">
+    <span {...props} className={clsx('breadcrumb-separator', className)} role="presentation" aria-hidden="true">
       {children ?? <ChevronRight size={16} />}
     </span>
   );

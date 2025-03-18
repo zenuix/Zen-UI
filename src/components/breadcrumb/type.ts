@@ -1,4 +1,4 @@
-import { ReactElement, ReactNode } from "react";
+import { ReactElement, ReactNode } from 'react';
 
 type UseBreadcrumbCollapseProps = {
   children: ReactNode[];
@@ -8,4 +8,4 @@ type UseBreadcrumbCollapseProps = {
   ellipsisStyle?: ReactElement | string;
 };
 
-export default UseBreadcrumbCollapseProps
+export default UseBreadcrumbCollapseProps;
