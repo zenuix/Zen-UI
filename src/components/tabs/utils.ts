@@ -1,7 +1,6 @@
 import { Children, isValidElement, ReactElement } from 'react';
-import TabGroup from './subcomponents/tab-group';
-import Tab from './subcomponents/tab';
-import { TabGroupProps, TabProps } from './type';
+import TabGroup, { TabGroupProps } from './subcomponents/tab-group';
+import Tab, { TabProps } from './subcomponents/tab';
 
 export const findFirstTabId = (children: React.ReactNode): string | undefined => {
   const childrenArray = Children.toArray(children);

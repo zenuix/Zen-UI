@@ -1,6 +1,11 @@
-import { TabGroupProps } from '../type';
-import '../style.css';
 import clsx from 'clsx';
+import { ReactElement } from 'react';
+import { UlProps } from '../type';
+import { TabProps } from './tab';
+
+export type TabGroupProps = UlProps & {
+  children: ReactElement<TabProps> | ReactElement<TabProps>[];
+};
 
 const TabGroup = ({ children, ...props }: TabGroupProps) => {
   return (

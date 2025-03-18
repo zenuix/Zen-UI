@@ -1,7 +1,12 @@
-import { ElementType, useContext } from 'react';
-import { TabProps } from '../type';
-import { TabsContext } from '../context';
 import clsx from 'clsx';
+import { ElementType, useContext } from 'react';
+import { TabsContext } from '../context';
+import { ButtonProps } from '../type';
+
+export type TabProps<T extends keyof HTMLElementTagNameMap = 'button'> = ButtonProps & {
+  id: string;
+  as?: T;
+} & React.HTMLAttributes<HTMLElementTagNameMap[T]>;
 
 const Tab = <T extends keyof HTMLElementTagNameMap = 'button'>({
   children,

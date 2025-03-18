@@ -1,10 +1,21 @@
 import { createContext, useState } from 'react';
-import { TabsContextType, TabsProviderProps } from './type';
+
+type TabsContextType = {
+  activeTab: string | undefined;
+  handleChange: (newTab: string) => void;
+};
 
 export const TabsContext = createContext<TabsContextType>({
   activeTab: undefined,
   handleChange() {}
 });
+
+type TabsProviderProps = {
+  children?: React.ReactNode;
+  defaultTab?: string | undefined;
+  tab?: string;
+  onChange?: (newTab: string) => void;
+};
 
 export const TabsProvider = ({ children, defaultTab, tab, onChange }: TabsProviderProps) => {
   const [internalTab, setInternalTab] = useState<string | undefined>(defaultTab);

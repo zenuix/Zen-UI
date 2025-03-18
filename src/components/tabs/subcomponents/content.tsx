@@ -1,7 +1,11 @@
-import { useContext } from 'react';
-import { ContentProps } from '../type';
-import { TabsContext } from '../context';
 import clsx from 'clsx';
+import { useContext } from 'react';
+import { TabsContext } from '../context';
+import { DivProps } from '../type';
+
+export type ContentProps = DivProps & {
+  id: string;
+};
 
 const Content = ({ children, id, ...props }: ContentProps) => {
   const { activeTab } = useContext(TabsContext);

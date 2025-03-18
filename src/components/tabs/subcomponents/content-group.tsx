@@ -1,5 +1,11 @@
 import clsx from 'clsx';
-import { ContentGroupProps } from '../type';
+import { DivProps } from '../type';
+import { ReactElement } from 'react';
+import { ContentProps } from './content';
+
+export type ContentGroupProps = DivProps & {
+  children: ReactElement<ContentProps> | ReactElement<ContentProps>[];
+};
 
 const ContentGroup = ({ children, ...props }: ContentGroupProps) => {
   return (
