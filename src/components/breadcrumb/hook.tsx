@@ -27,7 +27,7 @@ export const useBreadcrumbCollapse = ({
     const beforeIndex = validBeforeCollapse ? children.findIndex((child) => child === items[itemsBeforeCollapse]) : 2;
     const afterIndex = validAfterCollapse
       ? children.findIndex((child) => child === items[items.length - itemsAfterCollapse])
-      : children.length - 3;
+      : children.length - 1;
 
     if (beforeIndex < afterIndex) {
       visibleItems = [
