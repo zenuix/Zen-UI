@@ -80,9 +80,9 @@ const CollapseTemplate: StoryFn = () => (
   <Breadcrumb>
     <Breadcrumb.list
       maxItems={6}
-      // itemsBeforeCollapse={2}
-      // itemsAfterCollapse={3}
-      // ellipsisStyle={<span onClick={() => alert('Expand Breadcrumbs!')}>🔍 More...</span>}
+      itemsBeforeCollapse={4}
+      itemsAfterCollapse={4}
+      ellipsisStyle={<span onClick={() => alert('Expand Breadcrumbs!')}>🔍 More...</span>}
     >
       <Breadcrumb.item>
         <Breadcrumb.link href="/">Item 1</Breadcrumb.link>

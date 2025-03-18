@@ -1,7 +1,11 @@
-import React, { ReactElement, ReactNode, useState } from 'react';
+import React, { ReactElement, useState } from 'react';
 import BreadcrumbEllipsis from './subcomponents/breadcrumb-ellipsis';
 import { Ellipsis } from 'lucide-react';
 import UseBreadcrumbCollapseProps from './type';
+
+const DEFAULT_BEFORE = 2
+const DEFAULT_AFTER = 1
+const ELLIPSIS_SIZE = 16
 
 export const useBreadcrumbCollapse = ({
   children,
@@ -12,30 +16,31 @@ export const useBreadcrumbCollapse = ({
 }: UseBreadcrumbCollapseProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
-  const items = children.filter(
+  const childrenArray = React.Children.toArray(children) as ReactElement[];
+  const items = childrenArray.filter(
     (child): child is ReactElement =>
       React.isValidElement(child) && typeof child.type === 'function' && child.type.name === 'BreadcrumbItem'
   );
 
   const isCollapse = maxItems !== undefined && items.length > maxItems && !isExpanded;
-  let visibleItems: ReactNode[] = children;
+  let visibleItems: ReactElement[] = childrenArray;
 
   if (isCollapse && items.length > 0) {
-    const validBeforeCollapse = itemsBeforeCollapse >= 0 && itemsBeforeCollapse < items.length;
-    const validAfterCollapse = itemsAfterCollapse >= 0 && itemsAfterCollapse < items.length;
+    const validBeforeCollapse = 0 <= itemsBeforeCollapse && itemsBeforeCollapse < items.length
+    const validAfterCollapse = 0 <= itemsAfterCollapse && itemsAfterCollapse < items.length;
 
-    const beforeIndex = validBeforeCollapse ? children.findIndex((child) => child === items[itemsBeforeCollapse]) : 2;
+    const beforeIndex = validBeforeCollapse ? childrenArray.findIndex((child) => child === items[itemsBeforeCollapse]) : DEFAULT_BEFORE;
     const afterIndex = validAfterCollapse
-      ? children.findIndex((child) => child === items[items.length - itemsAfterCollapse])
-      : children.length - 1;
+      ? childrenArray.findIndex((child) => child === items[items.length - itemsAfterCollapse])
+      : childrenArray.length - DEFAULT_AFTER;
 
     if (beforeIndex < afterIndex) {
       visibleItems = [
-        ...children.slice(0, beforeIndex),
+        ...childrenArray.slice(0, beforeIndex),
         <BreadcrumbEllipsis onClick={() => setIsExpanded(true)}>
-          {ellipsisStyle ?? <Ellipsis size={16} />}
+          {ellipsisStyle ?? <Ellipsis size={ELLIPSIS_SIZE} />}
         </BreadcrumbEllipsis>,
-        ...children.slice(afterIndex - 1)
+        ...childrenArray.slice(afterIndex - 1)
       ];
     }
   }
