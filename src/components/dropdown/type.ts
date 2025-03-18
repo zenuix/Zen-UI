@@ -25,6 +25,8 @@ export type DropdownContextType = {
   isOpen: boolean;
   triggerId: string;
   menuId: string;
+  triggerRef: React.RefObject<HTMLButtonElement | null> | null;
+  menuRef: React.RefObject<HTMLDivElement | null> | null;
   openMenu: () => void;
   closeMenu: () => void;
   toggleMenu: () => void;
