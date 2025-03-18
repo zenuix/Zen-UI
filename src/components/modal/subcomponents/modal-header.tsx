@@ -1,8 +1,9 @@
+import clsx from 'clsx';
 import { BaseDivProps } from '../type';
 
-const ModalHeader = ({ children, className = '', ...restProps }: BaseDivProps) => {
+const ModalHeader = ({ children, className, ...restProps }: BaseDivProps) => {
   return (
-    <div className={`modal-header ${className}`} {...restProps}>
+    <div className={clsx('modal-header', className)} {...restProps}>
       {children}
     </div>
   );

@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { ElementType, ReactNode } from 'react';
 
 /** DescriptionProps - Paragraphs 범위로 제한 */
@@ -13,7 +14,11 @@ export type DescriptionProps<T extends Paragraphs = 'p'> = {
 
 const ModalDescription = <T extends Paragraphs = 'p'>({ as = 'p' as T, children, ...props }: DescriptionProps<T>) => {
   const Component = as as ElementType;
-  return <Component {...props}>{children}</Component>;
+  return (
+    <Component className={clsx('modal-description', props.className)} {...props}>
+      {children}
+    </Component>
+  );
 };
 
 export default ModalDescription;
