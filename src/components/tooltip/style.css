@@ -2,3 +2,56 @@
   position: relative;
   display: inline-block;
 }
+
+.tooltipContent {
+  position: absolute;
+  background-color: #333;
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 14px;
+  white-space: nowrap;
+  transition: opacity 0.2s ease;
+}
+
+.top {
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.bottom {
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.left {
+  right: calc(100% + 8px);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.right {
+  left: calc(100% + 8px);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.fade {
+  opacity: 0;
+}
+
+.fade.show {
+  opacity: 1;
+}
+
+.scale {
+  transform: scale(0.9);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.scale.show {
+  transform: scale(1);
+  opacity: 1;
+}
