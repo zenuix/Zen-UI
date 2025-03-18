@@ -1,6 +1,6 @@
 import { Dispatch, HTMLAttributes, ReactNode, SetStateAction } from 'react';
 
-export interface ModalProps {
+export type ModalProps = {
   children?: ReactNode;
   open?: boolean;
   defaultOpen?: boolean;
@@ -8,8 +8,9 @@ export interface ModalProps {
   withCloseButton?: boolean;
   closeOnBackdropClick?: boolean;
   closeOnEscape?: boolean;
-}
-export interface ModalContextType {
+};
+
+export type ModalContextType = {
   isOpen: boolean;
   isVisible?: boolean;
   openModal: () => void;
@@ -18,7 +19,7 @@ export interface ModalContextType {
   closeOnBackdropClick?: boolean;
   closeOnEscape?: boolean;
   withCloseButton?: boolean;
-}
+};
 
 export type BaseDivProps = HTMLAttributes<HTMLDivElement>;
 
@@ -28,19 +29,3 @@ export type PolymorphicProps<T extends keyof HTMLElementTagNameMap = 'div'> = HT
   as?: T;
   children?: ReactNode;
 };
-
-/** TitleProps - Headings 범위로 제한 */
-export type TitleProps<T extends Headings = 'h2'> = PolymorphicProps<T>;
-
-/** DescriptionProps - Paragraphs 범위로 제한 */
-export type DescriptionProps<T extends Paragraphs = 'p'> = {
-  as?: T;
-  children?: ReactNode;
-} & (T extends 'p'
-  ? React.HTMLAttributes<HTMLParagraphElement>
-  : T extends 'pre'
-  ? React.HTMLAttributes<HTMLPreElement>
-  : React.HTMLAttributes<HTMLDivElement>);
-
-export type Headings = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span' | 'strong';
-export type Paragraphs = 'p' | 'pre' | 'div';
