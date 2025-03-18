@@ -12,7 +12,13 @@ export const dropdownContext = createContext<DropdownContextType>({
   toggleMenu() {}
 });
 
-const DropdownProvider = ({ children, defaultOpen = false, open, onOpenChange }: DropdownProps) => {
+const DropdownProvider = ({
+  children,
+  triggerRef: externalTriggerRef,
+  defaultOpen = false,
+  open,
+  onOpenChange
+}: DropdownProps) => {
   const [internalOpen, setInternalOpen] = useState(defaultOpen);
 
   const isControlled = open !== undefined;
@@ -21,12 +27,18 @@ const DropdownProvider = ({ children, defaultOpen = false, open, onOpenChange }:
   const triggerId = useId();
   const menuId = useId();
 
-  const triggerRef = useRef<HTMLButtonElement>(null);
+  const internalTriggerRef = useRef<HTMLButtonElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
+  const triggerRef = isControlled ? externalTriggerRef ?? null : internalTriggerRef;
 
   if (isControlled && !onOpenChange)
     console.warn(
       'You provided `open` prop without an `onOpenChange` handler. This will render a non-interactive dropdown component.'
+    );
+
+  if (isControlled && !externalTriggerRef)
+    console.warn(
+      'You provided a controlled dropdown without passing a reference to the trigger element. This may cause positioning issues. Please provide a ref to the trigger element for proper positioning.'
     );
 
   const setOpen = (value: boolean) => {

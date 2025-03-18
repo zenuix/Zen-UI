@@ -36,5 +36,6 @@ export type DropdownProps = {
   children: ReactNode;
   defaultOpen?: boolean;
   open?: boolean;
+  triggerRef?: React.RefObject<HTMLButtonElement | null>;
   onOpenChange?: (open: boolean) => void;
 };
