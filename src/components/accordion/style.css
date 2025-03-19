@@ -11,7 +11,7 @@
   color: var(--zen-color-white);
   border: 0.1rem solid;
   text-align: left;
-  border-radius: 0.5rem 0.5rem 0 0;
+  border-radius: var(--zen-border-radius-large) var(--zen-border-radius-large) 0 0;
   margin-bottom: 0rem;
 }
 
