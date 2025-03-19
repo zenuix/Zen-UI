@@ -1,18 +1,9 @@
 import * as path from 'path';
-import react from '@vitejs/plugin-react';
 
-import { type PluginOption, defineConfig } from 'vite';
+import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
 
 export default defineConfig({
-  plugins: [
-    react(),
-    dts({
-      include: ['src'],
-      rollupTypes: true,
-      tsconfigPath: './tsconfig.app.json'
-    })
-  ] as PluginOption[],
   build: {
     lib: {
       entry: path.resolve(__dirname, 'src/index.ts'),
@@ -21,18 +12,16 @@ export default defineConfig({
       formats: ['es', 'cjs']
     },
     rollupOptions: {
-      external: ['react'], // react 가 없다면 안써도 됨
+      external: ['react'],
       output: {
         globals: {
           react: 'React'
-        },
-        entryFileNames: 'index.js',
-        chunkFileNames: 'chunk-[name].js',
-        assetFileNames: 'index.[ext]'
+        }
       }
     },
     commonjsOptions: {
       esmExternals: ['react']
     }
-  }
+  },
+  plugins: [dts({ tsconfigPath: './tsconfig.app.json' })]
 });
