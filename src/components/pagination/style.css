@@ -1,0 +1,51 @@
+@import url('../../global-style.css');
+
+.pagination-btn {
+  width: 40px;
+  height: 34px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  color: var(--zen-color-black);
+  font-size: var(--zen-font-size-small);
+  box-sizing: border-box;
+  padding: 10px 20px;
+  border: none;
+  border-radius: var(--zen-border-radius-medium);
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* 호버 */
+.pagination-btn:hover {
+  background-color: var(--zen-color-white);
+  transform: scale(1.05);
+}
+
+/* 비활성화된 버튼 스타일 */
+.pagination-disabled {
+  color: var(--zen-color-secondary);
+  cursor: not-allowed;
+}
+
+/* 활성화된 버튼의 스타일 */
+.pagination-active-btn {
+  border: 1px solid var(--zen-color-secondary);
+  border-radius: var(--zen-border-radius-medium);
+}
+
+.pagination-content {
+  display: flex;
+  gap: var(--zen-spacing-small);
+  align-items: center;
+}
+
+.icon {
+  width: 40px;
+  height: 16px;
+  cursor:pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
