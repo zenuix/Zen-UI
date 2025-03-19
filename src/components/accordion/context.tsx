@@ -2,7 +2,7 @@ import React, { createContext } from 'react';
 import AccordionType from './type';
 
 const AccordionContext = createContext<AccordionType>({
-  isOpen: false,
+  isOpen: [],
   toggle: () => {}
 });
 

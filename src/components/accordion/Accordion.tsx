@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { AccordionContext } from './context';
 import Header from './subcomponents/Header';
 import Content from './subcomponents/Content';
@@ -8,13 +8,27 @@ interface Props {
 }
 
 const Accordion = ({ children }: Props) => {
-  const [isOpen, setisOpen] = useState(false);
+  const [isOpen, setisOpen] = useState<boolean[]>([]);
 
-  const toggle = () => {
-    setisOpen((prev) => !prev);
+  useEffect(() => {
+    const initialState = React.Children.map(children, () => false);
+    setisOpen(initialState as boolean[]);
+  }, [children]);
+
+  const toggle = (index: number) => {
+    setisOpen((prevState) => {
+      const newState = [...prevState];
+      newState[index] = !newState[index]; // 해당 항목의 열림/닫힘 상태만 변경
+      console.log(isOpen);
+      return newState;
+    });
   };
 
-  return <AccordionContext.Provider value={{ isOpen, toggle }}>{children}</AccordionContext.Provider>;
+  return (
+    <AccordionContext.Provider value={{ isOpen, toggle }}>
+      <div className="accordion-container flex flex-col gap-1">{children}</div>
+    </AccordionContext.Provider>
+  );
 };
 export default Accordion;
 
