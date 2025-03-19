@@ -4,7 +4,6 @@
   display: flex;
   padding: var(--zen-spacing-large);
   gap: var(--zen-spacing-medium);
-  color: var(--zen-color-black);
 }
 
 .tab-group {
@@ -38,7 +37,7 @@
 }
 
 .content-group {
-  background-color: var(--zen-color-white);
+  background-color: var(--zen-color-primary);
   padding: var(--zen-spacing-large);
   border-radius: var(--zen-border-radius-large);
 }
@@ -46,12 +45,18 @@
 .content {
   width: 100%;
   font-size: var(--zen-font-size-medium);
+  color: var(--zen-color-white);
 }
 
 /* 아래는 조건부로 적용할 css */
 
 .bg-gray {
-  background-color: var(--zen-color-white);
+  background-color: var(--zen-color-primary);
+  color: var(--zen-color-white);
+
+  &:hover {
+    background-color: var(--zen-color-primary);
+  }
 }
 
 .vertical-tabs {
