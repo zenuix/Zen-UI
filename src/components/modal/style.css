@@ -1,0 +1,115 @@
+.modal-content {
+  padding: var(--zen-spacing-large);
+  box-shadow: var(--zen-shadow-medium);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 100;
+  visibility: hidden;
+  background-color: var(--zen-color-primary);
+  color: var(--zen-color-white);
+  transform: translate(-50%, -50%) scale(0.8);
+  border-radius: var(--zen-border-radius-large);
+  opacity: 0;
+}
+
+.modal-content.open {
+  visibility: visible;
+  animation: fadeInScale 0.3s ease-in-out forwards;
+}
+
+.modal-content.close {
+  visibility: visible;
+  animation: fadeOutScale 0.3s ease-in-out forwards;
+}
+
+.modal-overlay {
+  position: fixed;
+  z-index: 50;
+  width: 100vw;
+  height: 100vh;
+  visibility: hidden;
+  background-color: var(--zen-color-black-50);
+  inset: 0;
+  opacity: 0;
+}
+
+.modal-overlay.open {
+  visibility: visible;
+  animation: fadeIn 0.3s ease-in-out forwards;
+}
+
+.modal-overlay.close {
+  visibility: visible;
+  animation: fadeOut 0.3s ease-in-out forwards;
+}
+
+.modal-close-btn {
+  display: flex;
+  padding: 0;
+  border: none;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  font-size: var(--zen-font-size-medium);
+  cursor: pointer;
+}
+
+.modal-trigger {
+  padding-top: var(--zen-spacing-medium);
+  padding-right: var(--zen-spacing-large);
+  padding-bottom: var(--zen-spacing-medium);
+  padding-left: var(--zen-spacing-large);
+  border: none;
+  box-shadow: var(--zen-shadow-small);
+  background-color: var(--zen-color-primary);
+  font-size: var(--zen-font-size-small);
+  color: var(--zen-color-white);
+  cursor: pointer;
+  border-radius: var(--zen-border-radius-medium);
+}
+
+/* 모달 열리는 애니메이션 */
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+/* 모달 닫히는 애니메이션 */
+@keyframes fadeOutScale {
+  from {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+}
+
+/* 오버레이 열리는 애니메이션 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* 오버레이 닫히는 애니메이션 */
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}

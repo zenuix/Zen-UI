@@ -1,0 +1,40 @@
+:root {
+  /* Colors */
+  --zen-color-black: #0b0a0a;
+  --zen-color-primary: #383839;
+  --zen-color-secondary: #a9a9a9;
+  --zen-color-white: #f5f5f5;
+  --zen-color-black-50: #0b0a0a50;
+
+  /* Font Sizes */
+  --zen-font-size-small: 12px;
+  --zen-font-size-medium: 16px;
+  --zen-font-size-large: 20px;
+
+  /* Spacing */
+  --zen-spacing-small: 4px;
+  --zen-spacing-medium: 8px;
+  --zen-spacing-large: 16px;
+
+  /* Border Radius */
+  --zen-border-radius-small: 2px;
+  --zen-border-radius-medium: 4px;
+  --zen-border-radius-large: 8px;
+
+  /* Shadows */
+  --zen-shadow-small: 0 1px 3px rgba(0, 0, 0, 0.12);
+  --zen-shadow-medium: 0 3px 6px rgba(0, 0, 0, 0.16);
+  --zen-shadow-large: 0 10px 20px rgba(0, 0, 0, 0.19);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  border: 0;
+  clip: rect(0 0 0 0);
+}
