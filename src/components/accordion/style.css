@@ -1,0 +1,36 @@
+@import '../../global-style.css';
+
+.accordion-container {
+  width: 100%;
+}
+
+.accordion-header {
+  cursor: pointer;
+  padding: 15px;
+  background-color: var(--zen-color-primary);
+  color: var(--zen-color-white);
+  border: 0.1rem solid;
+  text-align: left;
+  border-radius: var(--zen-border-radius-large) var(--zen-border-radius-large) 0 0;
+  margin-bottom: 0rem;
+}
+
+.accordion-content {
+  background-color: var(--zen-color-secondary);
+  color: var(--zen-color-white);
+  border: 0.1rem solid;
+  overflow: hidden;
+  transition:
+    max-height 0.3s ease,
+    opacity 0.3s ease;
+}
+
+.accordion-content.closed {
+  max-height: 0;
+  opacity: 0;
+}
+
+.accordion-content.open {
+  max-height: 1000px;
+  opacity: 1;
+}

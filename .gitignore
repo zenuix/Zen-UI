@@ -25,3 +25,5 @@ dist-ssr
 
 .env*
 *storybook.log
+package.json
+pnpm-lock.yaml
