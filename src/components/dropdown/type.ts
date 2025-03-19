@@ -25,6 +25,8 @@ export type DropdownContextType = {
   isOpen: boolean;
   triggerId: string;
   menuId: string;
+  triggerRef: React.RefObject<HTMLButtonElement | null> | null;
+  menuRef: React.RefObject<HTMLDivElement | null> | null;
   openMenu: () => void;
   closeMenu: () => void;
   toggleMenu: () => void;
@@ -34,5 +36,6 @@ export type DropdownProps = {
   children: ReactNode;
   defaultOpen?: boolean;
   open?: boolean;
+  triggerRef?: React.RefObject<HTMLButtonElement | null>;
   onOpenChange?: (open: boolean) => void;
 };

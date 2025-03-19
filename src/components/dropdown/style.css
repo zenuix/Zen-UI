@@ -1,4 +1,5 @@
 .dropdown-content {
+  position: absolute;
   min-width: 11.25rem;
   background-color: white;
   margin-top: 0.5rem;

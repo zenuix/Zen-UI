@@ -17,7 +17,7 @@ const DropdownItemInner = <T extends ItemType>(
   };
 
   return (
-    <Component role="menuitem" ref={ref} onClick={handleDropdownItemClick} {...props}>
+    <Component role="menuitem" tabIndex="1" ref={ref} onClick={handleDropdownItemClick} {...props}>
       {children}
     </Component>
   );
