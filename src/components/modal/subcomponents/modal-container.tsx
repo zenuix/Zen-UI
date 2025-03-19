@@ -1,7 +1,8 @@
 import { useModal } from '../hook';
 import { BaseDivProps } from '../type';
+import { clsx } from 'clsx';
 
-const ModalContainer = ({ children, className = '', ...restProps }: BaseDivProps) => {
+const ModalContainer = ({ children, className, ...restProps }: BaseDivProps) => {
   const { isOpen, isVisible } = useModal();
 
   const handleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
@@ -14,7 +15,7 @@ const ModalContainer = ({ children, className = '', ...restProps }: BaseDivProps
   if (!isOpen && !isVisible) return null;
 
   return (
-    <div className={`modal-container ${className}`} onClick={handleClick} {...restProps}>
+    <div className={clsx('modal-container', className)} onClick={handleClick} {...restProps}>
       {children}
     </div>
   );
