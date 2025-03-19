@@ -79,10 +79,10 @@ export const CustomSeparator = CustomSeparatorTemplate.bind({});
 const CollapseTemplate: StoryFn = () => (
   <Breadcrumb>
     <Breadcrumb.list
-      maxItems={3}
-      itemsBeforeCollapse={1}
-      itemsAfterCollapse={2}
-      // ellipsisStyle={<span onClick={() => alert('Expand Breadcrumbs!')}>🔍 More...</span>}
+      maxItems={6}
+      itemsBeforeCollapse={4}
+      itemsAfterCollapse={4}
+      ellipsisStyle={<span onClick={() => alert('Expand Breadcrumbs!')}>🔍 More...</span>}
     >
       <Breadcrumb.item>
         <Breadcrumb.link href="/">Item 1</Breadcrumb.link>
@@ -105,7 +105,11 @@ const CollapseTemplate: StoryFn = () => (
       </Breadcrumb.item>
       <Breadcrumb.separator />
       <Breadcrumb.item>
-        <Breadcrumb.page>Item 6</Breadcrumb.page>
+        <Breadcrumb.link href="/">Item 6</Breadcrumb.link>
+      </Breadcrumb.item>
+      <Breadcrumb.separator />
+      <Breadcrumb.item>
+        <Breadcrumb.page>Item 7</Breadcrumb.page>
       </Breadcrumb.item>
     </Breadcrumb.list>
   </Breadcrumb>
