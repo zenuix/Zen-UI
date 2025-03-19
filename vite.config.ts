@@ -12,7 +12,7 @@ export default defineConfig({
       formats: ['es', 'cjs']
     },
     rollupOptions: {
-      external: ['react'], // react 가 없다면 안써도 됨
+      external: ['react'],
       output: {
         globals: {
           react: 'React'
