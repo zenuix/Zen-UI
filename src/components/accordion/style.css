@@ -16,7 +16,6 @@
 }
 
 .accordion-content {
-  /* padding: 15px; */
   background-color: var(--zen-color-secondary);
   color: var(--zen-color-white);
   border: 0.1rem solid;

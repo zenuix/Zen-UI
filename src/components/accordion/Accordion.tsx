@@ -18,7 +18,7 @@ const Accordion = ({ children }: Props) => {
   const toggle = (index: number) => {
     setisOpen((prevState) => {
       const newState = [...prevState];
-      newState[index] = !newState[index]; // 해당 항목의 열림/닫힘 상태만 변경
+      newState[index] = !newState[index];
       console.log(isOpen);
       return newState;
     });
