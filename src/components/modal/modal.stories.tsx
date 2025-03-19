@@ -1,7 +1,7 @@
+import { useState } from 'react';
 import { Meta, StoryFn } from '@storybook/react';
 import Modal from './index';
 import './style.css';
-import { useState } from 'react';
 
 export default {
   title: 'Components/Modal',
@@ -9,29 +9,66 @@ export default {
   tags: ['autodocs'],
   argTypes: {
     withCloseButton: {
-      control: 'boolean'
+      description:
+        'Determines whether the modal displays a close button. When true, a button for closing the modal is rendered.',
+      control: 'boolean',
+      table: {
+        defaultValue: { summary: 'true' }
+      }
     },
     closeOnBackdropClick: {
-      control: 'boolean'
+      description:
+        'Enables closing the modal when clicking on the backdrop. If true, clicking outside the modal content triggers the close action.',
+      control: 'boolean',
+      table: {
+        defaultValue: { summary: 'true' }
+      }
     },
     closeOnEscape: {
-      control: 'boolean'
+      description:
+        'Allows the modal to be dismissed by pressing the Escape key. When true, the modal closes upon Escape key press.',
+      control: 'boolean',
+      table: {
+        defaultValue: { summary: 'true' }
+      }
+    },
+    defaultOpen: {
+      description:
+        'Specifies if the modal should be open by default on initial render. If true, the modal is visible immediately upon mounting.',
+      control: 'boolean',
+      table: {
+        defaultValue: { summary: 'false' }
+      }
+    },
+    open: {
+      description:
+        'Controls the modal visibility externally. Use this prop to programmatically open or close the modal.'
+    },
+    onOpenChange: {
+      description:
+        "Callback invoked when the modal's open state changes. Accepts either a setState function or a custom handler."
     }
+  },
+  args: {
+    withCloseButton: true,
+    closeOnBackdropClick: true,
+    closeOnEscape: true,
+    defaultOpen: false
   }
-} as Meta;
+} as Meta<typeof Modal>;
 
-const DefaultTemplate: StoryFn = () => (
+const Template: StoryFn<typeof Modal> = (args) => (
   <div
     style={{
       width: '100%',
-      height: '100vh',
+      height: '500px',
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'center'
     }}
   >
-    <Modal>
+    <Modal {...args}>
       <Modal.trigger>Open Modal</Modal.trigger>
       <Modal.container>
         <Modal.overlay />
@@ -51,11 +88,13 @@ const DefaultTemplate: StoryFn = () => (
   </div>
 );
 
-export const Default = DefaultTemplate.bind({});
+export const Default = Template.bind({});
+Default.args = {
+  // export default에 정의된 기본 args 사용
+};
 
-const CustomStateTemplate = () => {
+const CustomStateTemplate: StoryFn<typeof Modal> = (args) => {
   const [isOpen, setIsOpen] = useState(false);
-
   return (
     <div
       style={{
@@ -67,7 +106,7 @@ const CustomStateTemplate = () => {
         justifyContent: 'center'
       }}
     >
-      <Modal open={isOpen} onOpenChange={setIsOpen} withCloseButton={false}>
+      <Modal {...args} open={isOpen} onOpenChange={setIsOpen}>
         <Modal.trigger>Open Modal</Modal.trigger>
         <Modal.container>
           <Modal.overlay />
@@ -93,8 +132,11 @@ const CustomStateTemplate = () => {
 };
 
 export const CustomState = CustomStateTemplate.bind({});
+CustomState.args = {
+  withCloseButton: false
+};
 
-const NoBackdropClickTemplate: StoryFn = () => (
+const NoBackdropClickTemplate: StoryFn<typeof Modal> = (args) => (
   <div
     style={{
       width: '100%',
@@ -105,7 +147,7 @@ const NoBackdropClickTemplate: StoryFn = () => (
       justifyContent: 'center'
     }}
   >
-    <Modal closeOnBackdropClick={false}>
+    <Modal {...args}>
       <Modal.trigger>Open Modal</Modal.trigger>
       <Modal.container>
         <Modal.overlay />
@@ -126,8 +168,11 @@ const NoBackdropClickTemplate: StoryFn = () => (
 );
 
 export const NoBackdropClick = NoBackdropClickTemplate.bind({});
+NoBackdropClick.args = {
+  closeOnBackdropClick: false
+};
 
-const NoEscapeTemplate: StoryFn = () => (
+const NoEscapeTemplate: StoryFn<typeof Modal> = (args) => (
   <div
     style={{
       width: '100%',
@@ -138,7 +183,7 @@ const NoEscapeTemplate: StoryFn = () => (
       justifyContent: 'center'
     }}
   >
-    <Modal closeOnEscape={false}>
+    <Modal {...args}>
       <Modal.trigger>Open Modal</Modal.trigger>
       <Modal.container>
         <Modal.overlay />
@@ -159,8 +204,11 @@ const NoEscapeTemplate: StoryFn = () => (
 );
 
 export const NoEscape = NoEscapeTemplate.bind({});
+NoEscape.args = {
+  closeOnEscape: false
+};
 
-const defaultOpenTemplate: StoryFn = () => (
+const DefaultOpenTemplate: StoryFn<typeof Modal> = (args) => (
   <div
     style={{
       width: '100%',
@@ -171,7 +219,7 @@ const defaultOpenTemplate: StoryFn = () => (
       justifyContent: 'center'
     }}
   >
-    <Modal defaultOpen={true}>
+    <Modal {...args}>
       <Modal.trigger>Open Modal</Modal.trigger>
       <Modal.container>
         <Modal.overlay />
@@ -191,4 +239,7 @@ const defaultOpenTemplate: StoryFn = () => (
   </div>
 );
 
-export const DefaultOpen = defaultOpenTemplate.bind({});
+export const DefaultOpen = DefaultOpenTemplate.bind({});
+DefaultOpen.args = {
+  defaultOpen: true
+};
