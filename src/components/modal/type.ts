@@ -5,7 +5,7 @@ export type ModalProps = {
   className?: string;
   open?: boolean;
   defaultOpen?: boolean;
-  onOpenChange?: Dispatch<SetStateAction<boolean>>;
+  onOpenChange?: Dispatch<SetStateAction<boolean>> | ((open: boolean | undefined) => void);
   withCloseButton?: boolean;
   closeOnBackdropClick?: boolean;
   closeOnEscape?: boolean;
