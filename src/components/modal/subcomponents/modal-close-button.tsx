@@ -8,7 +8,7 @@ const ModalCloseButton = () => {
 
   return (
     <button type="button" onClick={closeModal} className="modal-close-btn">
-      <LucideX />
+      <LucideX color="#a9a9a9" />
       <span className="sr-only">Close</span>
     </button>
   );

@@ -1,8 +1,9 @@
+import clsx from 'clsx';
 import { BaseDivProps } from '../type';
 
-const ModalFooter = ({ children, className = '', ...restProps }: BaseDivProps) => {
+const ModalFooter = ({ children, className, ...restProps }: BaseDivProps) => {
   return (
-    <div className={`modal-footer ${className}`} {...restProps}>
+    <div className={clsx('modal-footer', className)} {...restProps}>
       {children}
     </div>
   );
