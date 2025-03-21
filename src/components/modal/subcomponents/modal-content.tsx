@@ -3,8 +3,9 @@ import { useModal } from '../hook';
 import { BaseDivProps } from '../type';
 import ModalCloseButton from './modal-close-button';
 import { useFocusTrap, useOutsideClick } from '../../../global-hooks';
+import clsx from 'clsx';
 
-const ModalContent = ({ children, className = '', ...restProps }: BaseDivProps) => {
+const ModalContent = ({ children, className, ...restProps }: BaseDivProps) => {
   const { isOpen, animationClass, closeOnBackdropClick, closeModal } = useModal();
   const modalRef = useRef<HTMLDivElement>(null);
 
@@ -15,7 +16,7 @@ const ModalContent = ({ children, className = '', ...restProps }: BaseDivProps) 
   useFocusTrap(modalRef, isOpen);
 
   return (
-    <div ref={modalRef} role="dialog" className={`modal-content ${animationClass} ${className}`} {...restProps}>
+    <div ref={modalRef} role="dialog" className={clsx('modal-content', animationClass, className)} {...restProps}>
       {children}
       <ModalCloseButton />
     </div>

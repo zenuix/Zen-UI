@@ -1,0 +1,24 @@
+.dropdown-content {
+  position: absolute;
+  min-width: 11.25rem;
+  background-color: white;
+  margin-top: 0.5rem;
+  border-radius: 6px;
+  padding: 0.25rem;
+  box-shadow: 0px 10px 38px -10px rgba(22, 23, 24, 0.35), 0px 10px 20px -15px rgba(22, 23, 24, 0.2);
+  animation-duration: 300ms;
+  animation-timing-function: ease-in-out;
+  animation-name: slideDownAndFade;
+  will-change: transform, opacity;
+}
+
+@keyframes slideDownAndFade {
+  from {
+    opacity: 0;
+    transform: translateY(-2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -2,7 +2,7 @@ import { ReactElement, ReactNode } from 'react';
 
 type UseBreadcrumbCollapseProps = {
   children: ReactNode[];
-  maxItems: number;
+  maxItems?: number;
   itemsBeforeCollapse: number;
   itemsAfterCollapse: number;
   ellipsisStyle?: ReactElement | string;
