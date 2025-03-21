@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react';
+import { useRef } from 'react';
 import clsx from 'clsx';
 import '../style.css';
 import { useTooltipContext } from '../context';
@@ -11,7 +11,7 @@ interface TooltipTriggerProps {
 export function TooltipTrigger({ children, className }: TooltipTriggerProps) {
   const { setIsOpen, delay } = useTooltipContext();
   const triggerRef = useRef<HTMLDivElement>(null); // 트리거 요소 DOM 참조
-  const timeoutRef = useRef<number | null>(null); // 타이머 id 저장 참조
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null); // 타이머 id 저장 참조
 
   const handleOpen = () => {
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
@@ -22,15 +22,6 @@ export function TooltipTrigger({ children, className }: TooltipTriggerProps) {
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
     setIsOpen(false);
   };
-
-  useEffect(() => {
-    // esc 키 입력시 툴팁 닫는 이벤트 핸들러
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') setIsOpen(false);
-    };
-    document.addEventListener('keydown', handleKeyDown);
-    return () => document.removeEventListener('keydown', handleKeyDown);
-  }, [setIsOpen]);
 
   return (
     <div

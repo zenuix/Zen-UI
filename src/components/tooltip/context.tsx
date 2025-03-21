@@ -1,5 +1,6 @@
 import { createContext, useContext, useState } from 'react';
 import { TooltipProps, TooltipContextType } from './types';
+import { useEscapeKey } from '../../global-hooks';
 
 const TooltipContext = createContext<TooltipContextType>({
   isOpen: false,
@@ -19,6 +20,10 @@ export function TooltipProvider({
 }: TooltipProps) {
   const [isOpen, setIsOpen] = useState(false);
 
+  const closeMenu = () => setIsOpen(false);
+
+  useEscapeKey(closeMenu, isOpen);
+
   const value: TooltipContextType = {
     isOpen,
     setIsOpen,
@@ -31,12 +36,12 @@ export function TooltipProvider({
   return <TooltipContext.Provider value={value}>{children}</TooltipContext.Provider>;
 }
 
-export function useTooltipContext() {
+export const useTooltipContext = () => {
   const context = useContext(TooltipContext);
   if (!context) {
     throw new Error('useTooltipContext must be used within a TooltipProvider');
   }
   return context;
-}
+};
 
 export default TooltipProvider;
