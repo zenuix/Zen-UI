@@ -1,9 +1,9 @@
 ---
 name: Bug Report Template
 about: 버그 리포트 이슈 템플릿
-title: ""
+title: ''
 labels: "\U0001F41E BugFix"
-assignees: ""
+assignees: ''
 ---
 
 # 🐞 Bug Report
