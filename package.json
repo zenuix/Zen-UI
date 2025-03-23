@@ -19,7 +19,9 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "dependencies": {
     "clsx": "^2.1.1",
@@ -52,6 +54,7 @@
     "globals": "^15.15.0",
     "path": "^0.12.7",
     "playwright": "^1.50.1",
+    "prettier": "^3.5.3",
     "storybook": "8.6.4",
     "typescript": "~5.7.2",
     "typescript-eslint": "^8.24.1",
