@@ -1,6 +1,7 @@
 import { Meta, StoryFn } from '@storybook/react';
 import Breadcrumb from './index';
 import './style.css';
+import '../../global-style.css';
 import { ArrowBigDownDash, ArrowBigRightDash } from 'lucide-react';
 
 export default {
@@ -9,21 +10,23 @@ export default {
 } as Meta;
 
 const DefaultTemplate: StoryFn = () => (
-  <Breadcrumb>
-    <Breadcrumb.list>
-      <Breadcrumb.item>
-        <Breadcrumb.link href="/">Home</Breadcrumb.link>
-      </Breadcrumb.item>
-      <Breadcrumb.separator />
-      <Breadcrumb.item>
-        <Breadcrumb.link href="/products">Products</Breadcrumb.link>
-      </Breadcrumb.item>
-      <Breadcrumb.separator />
-      <Breadcrumb.item>
-        <Breadcrumb.page>Category</Breadcrumb.page>
-      </Breadcrumb.item>
-    </Breadcrumb.list>
-  </Breadcrumb>
+  <>
+    <Breadcrumb>
+      <Breadcrumb.list>
+        <Breadcrumb.item>
+          <Breadcrumb.link href="/">Home</Breadcrumb.link>
+        </Breadcrumb.item>
+        <Breadcrumb.separator />
+        <Breadcrumb.item>
+          <Breadcrumb.link href="/products">Products</Breadcrumb.link>
+        </Breadcrumb.item>
+        <Breadcrumb.separator />
+        <Breadcrumb.item>
+          <Breadcrumb.page>Category</Breadcrumb.page>
+        </Breadcrumb.item>
+      </Breadcrumb.list>
+    </Breadcrumb>
+  </>
 );
 
 export const Default = DefaultTemplate.bind({});
@@ -79,9 +82,9 @@ export const CustomSeparator = CustomSeparatorTemplate.bind({});
 const CollapseTemplate: StoryFn = () => (
   <Breadcrumb>
     <Breadcrumb.list
-      maxItems={6}
-      itemsBeforeCollapse={4}
-      itemsAfterCollapse={4}
+      maxItems={5}
+      itemsBeforeCollapse={2}
+      itemsAfterCollapse={3}
       ellipsisStyle={<span onClick={() => alert('Expand Breadcrumbs!')}>🔍 More...</span>}
     >
       <Breadcrumb.item>
