@@ -1,4 +1,4 @@
-import { forwardRef, useEffect } from 'react';
+import React, { forwardRef, useEffect } from 'react';
 import { useDropdownContext } from '../hook';
 import { DropdownTriggerProps } from '../type';
 
@@ -16,7 +16,7 @@ const DropdownTrigger = forwardRef<HTMLButtonElement, DropdownTriggerProps>(({ c
     if (!triggerRef || !ref) return;
     if (typeof ref === 'function') ref(triggerRef.current);
     else ref.current = triggerRef.current;
-  }, [ref, isOpen]);
+  }, [ref, isOpen, triggerRef]);
 
   return (
     <button

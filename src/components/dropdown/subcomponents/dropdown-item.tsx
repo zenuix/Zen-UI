@@ -1,4 +1,4 @@
-import { ElementType, forwardRef, Ref } from 'react';
+import React, { ElementType, forwardRef, Ref } from 'react';
 import { useDropdownContext } from '../hook';
 import { DropdownItemProps, ItemType } from '../type';
 

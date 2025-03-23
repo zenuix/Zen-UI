@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 
 export type ItemType = 'li' | 'button' | 'a' | 'div';
 export type ListType = 'ul' | 'ol' | 'div';
