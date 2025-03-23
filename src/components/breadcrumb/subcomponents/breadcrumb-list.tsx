@@ -1,6 +1,7 @@
 import React, { ReactElement, ReactNode } from 'react';
 import clsx from 'clsx';
 import { useBreadcrumbCollapse } from '../hook';
+import { isBreadcrumbListElement } from '../util';
 
 type BreadcrumbListProps = React.HTMLAttributes<HTMLUListElement> & {
   direction?: 'row' | 'col';
@@ -20,8 +21,11 @@ const BreadcrumbList = ({
   ellipsisStyle,
   ...props
 }: BreadcrumbListProps) => {
+  const allChildren = React.Children.toArray(children) as ReactNode[];
+  const filteredChildren = allChildren.filter(isBreadcrumbListElement);
+
   const { visibleItems } = useBreadcrumbCollapse({
-    children: React.Children.toArray(children) as ReactNode[],
+    children: filteredChildren,
     maxItems,
     itemsBeforeCollapse,
     itemsAfterCollapse,
