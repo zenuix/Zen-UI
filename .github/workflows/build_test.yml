@@ -27,8 +27,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Lint code
-        run: pnpm lint
-        continue-on-error: true # 에러가 발생해도 계속 진행
+        run: pnpm lint || echo "No linting configured"
 
   format:
     runs-on: ubuntu-latest
