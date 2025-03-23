@@ -1,18 +1,17 @@
 import clsx from 'clsx';
 import '../style.css';
-import { useContext } from 'react';
-import { TabsContext } from '../context';
 import { DivProps } from '../type';
+import { useTabsContext } from '../hook';
 
 export type ContentProps = DivProps & {
   id: string;
 };
 
 const Content = ({ children, id, ...props }: ContentProps) => {
-  const { activeTab } = useContext(TabsContext);
+  const { activeTab } = useTabsContext();
 
   if (typeof id !== 'string') {
-    console.warn(`Tabs: 'id' prop should be a string, but received '${typeof id}'.`);
+    console.warn(`'id' prop should be a string, but received '${typeof id}'.`);
     return null;
   }
 

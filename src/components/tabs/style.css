@@ -1,5 +1,3 @@
-@import '../../global-style.css';
-
 .tabs {
   display: flex;
   padding: var(--zen-spacing-large);
@@ -30,10 +28,6 @@
   background-color: transparent;
   font-size: var(--zen-font-size-medium);
   cursor: pointer;
-
-  &:hover {
-    background-color: var(--zen-color-white);
-  }
 }
 
 .content-group {
@@ -53,9 +47,11 @@
 .bg-gray {
   background-color: var(--zen-color-primary);
   color: var(--zen-color-white);
+}
 
+.active-hover {
   &:hover {
-    background-color: var(--zen-color-primary);
+    background-color: var(--zen-color-white);
   }
 }
 

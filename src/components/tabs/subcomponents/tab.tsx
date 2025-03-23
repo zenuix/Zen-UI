@@ -1,8 +1,8 @@
 import clsx from 'clsx';
 import '../style.css';
-import { ElementType, useContext } from 'react';
-import { TabsContext } from '../context';
+import { ElementType } from 'react';
 import { ButtonProps } from '../type';
+import { useTabsContext } from '../hook';
 
 export type TabProps<T extends keyof HTMLElementTagNameMap = 'button'> = ButtonProps & {
   id: string;
@@ -15,19 +15,20 @@ const Tab = <T extends keyof HTMLElementTagNameMap = 'button'>({
   as = 'button' as T,
   ...props
 }: TabProps<T>) => {
-  const { activeTab, handleChange } = useContext(TabsContext);
+  const { activeTab, handleChange, registerTab } = useTabsContext();
   const Tag = as as ElementType;
 
   if (typeof id !== 'string') {
-    console.warn(`Tabs: 'id' prop should be a string, but received '${typeof id}'.`);
+    console.warn(`'id' prop should be a string, but received '${typeof id}'.`);
   }
 
   return (
     <li role="presentation" className={clsx('tab')}>
       <Tag
         role="tab"
+        ref={(element: HTMLElement) => registerTab(element, id)}
         onClick={() => handleChange(id)}
-        className={clsx('tab-button', { 'bg-gray': activeTab === id })}
+        className={clsx('tab-button', { 'bg-gray': activeTab === id, 'active-hover': activeTab !== id })}
         {...props}
       >
         {children}
