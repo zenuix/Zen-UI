@@ -27,7 +27,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Lint code
-        run: pnpm lint || echo "No linting configured"
+        run: pnpm lint
 
   format:
     runs-on: ubuntu-latest
