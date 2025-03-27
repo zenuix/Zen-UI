@@ -12,18 +12,23 @@ type TabsComponentProps = {
   defaultTab?: string;
   tab?: string;
   onChange?: (newTab: string) => void;
+  className?: string;
 };
 
-const TabsComponent = ({ children, defaultTab, orientation = 'vertical', ...props }: TabsComponentProps) => {
+const TabsComponent = ({ children, defaultTab, orientation = 'vertical', className, ...props }: TabsComponentProps) => {
   const initialTab = defaultTab === undefined ? findFirstTabId(children) : defaultTab;
 
   return (
     <TabsProvider defaultTab={initialTab} orientation={orientation} {...props}>
       <div
-        className={clsx('tabs', {
-          'vertical-tabs': orientation === 'vertical',
-          'horizontal-tabs': orientation === 'horizontal'
-        })}
+        className={clsx(
+          'tabs',
+          {
+            'vertical-tabs': orientation === 'vertical',
+            'horizontal-tabs': orientation === 'horizontal'
+          },
+          className
+        )}
       >
         {children}
       </div>

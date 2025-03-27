@@ -1,6 +1,5 @@
 import clsx from 'clsx';
-import '../style.css';
-import { ReactElement } from 'react';
+import { forwardRef, ReactElement } from 'react';
 import { UlProps } from '../type';
 import { TabProps } from './tab';
 import { useTabsContext } from '../hook';
@@ -10,7 +9,7 @@ export type TabGroupProps = UlProps & {
   children: ReactElement<TabProps> | ReactElement<TabProps>[];
 };
 
-const TabGroup = ({ children, ...props }: TabGroupProps) => {
+const TabGroup = forwardRef<HTMLUListElement, TabGroupProps>(({ children, className, ...props }, ref) => {
   const { activeTab, orientation, handleChange, focusTab } = useTabsContext();
   const tabIds = tabIdList(children);
 
@@ -39,16 +38,23 @@ const TabGroup = ({ children, ...props }: TabGroupProps) => {
   return (
     <ul
       role="tablist"
-      className={clsx('tab-group', {
-        'vertical-tab-group': orientation === 'vertical',
-        'horizontal-tab-group': orientation === 'horizontal'
-      })}
+      className={clsx(
+        'tab-group',
+        {
+          'vertical-tab-group': orientation === 'vertical',
+          'horizontal-tab-group': orientation === 'horizontal'
+        },
+        className
+      )}
       onKeyDown={handleKeyDown}
+      ref={ref}
       {...props}
     >
       {children}
     </ul>
   );
-};
+});
+
+TabGroup.displayName = 'tab-group';
 
 export default TabGroup;

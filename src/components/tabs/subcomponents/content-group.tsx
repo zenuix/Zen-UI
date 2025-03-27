@@ -1,19 +1,20 @@
 import clsx from 'clsx';
-import '../style.css';
 import { DivProps } from '../type';
-import { ReactElement } from 'react';
+import { forwardRef, ReactElement } from 'react';
 import { ContentProps } from './content';
 
 export type ContentGroupProps = DivProps & {
   children: ReactElement<ContentProps> | ReactElement<ContentProps>[];
 };
 
-const ContentGroup = ({ children, ...props }: ContentGroupProps) => {
+const ContentGroup = forwardRef<HTMLDivElement, ContentGroupProps>(({ children, className, ...props }, ref) => {
   return (
-    <div className={clsx('content-group')} {...props}>
+    <div className={clsx('content-group', className)} ref={ref} {...props}>
       {children}
     </div>
   );
-};
+});
+
+ContentGroup.displayName = 'content-group';
 
 export default ContentGroup;

@@ -1,13 +1,13 @@
 import clsx from 'clsx';
-import '../style.css';
 import { DivProps } from '../type';
 import { useTabsContext } from '../hook';
+import { forwardRef } from 'react';
 
 export type ContentProps = DivProps & {
   id: string;
 };
 
-const Content = ({ children, id, ...props }: ContentProps) => {
+const Content = forwardRef<HTMLDivElement, ContentProps>(({ children, id, className, ...props }, ref) => {
   const { activeTab } = useTabsContext();
 
   if (typeof id !== 'string') {
@@ -18,10 +18,12 @@ const Content = ({ children, id, ...props }: ContentProps) => {
   if (activeTab !== id) return null;
 
   return (
-    <div role="tabpanel" className={clsx('content')} {...props}>
+    <div role="tabpanel" className={clsx('content', className)} ref={ref} {...props}>
       {children}
     </div>
   );
-};
+});
+
+Content.displayName = 'content';
 
 export default Content;

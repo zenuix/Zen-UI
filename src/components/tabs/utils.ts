@@ -5,8 +5,11 @@ import { ContentGroupProps } from './subcomponents/content-group';
 
 /**
  * 탭 그룹에서 가장 첫 번째 탭의 id를 구하는 함수
- * @param children - Tabs의 자식 요소 (탭 그룹 또는 내용 그룹)
- * @returns 탭의 id 또는 undefined
+ * @param {[
+ *    ReactElement<TabGroupProps>,
+ *    ReactElement<ContentGroupProps>
+ * ]} children - Tabs의 자식 요소 (탭 그룹 또는 내용 그룹)
+ * @returns {string | undefined} 탭의 id
  */
 export const findFirstTabId = (
   children: [ReactElement<TabGroupProps>, ReactElement<ContentGroupProps>]
@@ -26,8 +29,8 @@ export const findFirstTabId = (
 
 /**
  * 현재 존재하는 탭의 id 리스트를 반환하는 함수
- * @param children - TabGroup의 자식 요소 (Tabs)
- * @returns id (string) 배열 또는 undefined
+ * @param {ReactNode | ReactNode[]} children - TabGroup의 자식 요소 (Tabs)
+ * @returns {string[]} id 배열
  */
 export const tabIdList = (children: ReactNode | ReactNode[]) => {
   const childrenArray = Children.toArray(children);
@@ -41,8 +44,8 @@ export const tabIdList = (children: ReactNode | ReactNode[]) => {
 
 /**
  * React 컴포넌트의 child로부터 id 속성을 추출하는 함수 (filter 콜백함수로 넣을 용도)
- * @param child - 자식 요소
- * @returns id 값 또는 undefined
+ * @param {unknown} child - 자식 요소
+ * @returns {string | undefined} id 값
  */
 const safelyExtractId = (child: unknown): string | undefined => {
   if (!isValidElement(child)) {

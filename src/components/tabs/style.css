@@ -49,10 +49,8 @@
   color: var(--zen-color-white);
 }
 
-.active-hover {
-  &:hover {
-    background-color: var(--zen-color-white);
-  }
+.active-hover:hover {
+  background-color: var(--zen-color-white);
 }
 
 .vertical-tabs {
