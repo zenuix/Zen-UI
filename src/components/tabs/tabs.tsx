@@ -1,13 +1,37 @@
+import clsx from 'clsx';
+import './style.css';
 import { TabsProvider } from './context';
-import { TabsComponentProps } from './type';
 import { findFirstTabId } from './utils';
+import { ReactElement } from 'react';
+import { TabGroupProps } from './subcomponents/tab-group';
+import { ContentGroupProps } from './subcomponents/content-group';
 
-const TabsComponent = ({ children, defaultTab, ...props }: TabsComponentProps) => {
+type TabsComponentProps = {
+  children: [ReactElement<TabGroupProps>, ReactElement<ContentGroupProps>];
+  orientation?: 'vertical' | 'horizontal';
+  defaultTab?: string;
+  tab?: string;
+  onChange?: (newTab: string) => void;
+  className?: string;
+};
+
+const TabsComponent = ({ children, defaultTab, orientation = 'vertical', className, ...props }: TabsComponentProps) => {
   const initialTab = defaultTab === undefined ? findFirstTabId(children) : defaultTab;
 
   return (
-    <TabsProvider defaultTab={initialTab} {...props}>
-      {children}
+    <TabsProvider defaultTab={initialTab} orientation={orientation} {...props}>
+      <div
+        className={clsx(
+          'tabs',
+          {
+            'vertical-tabs': orientation === 'vertical',
+            'horizontal-tabs': orientation === 'horizontal'
+          },
+          className
+        )}
+      >
+        {children}
+      </div>
     </TabsProvider>
   );
 };
