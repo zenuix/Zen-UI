@@ -1,0 +1,80 @@
+.tabs {
+  display: flex;
+  padding: var(--zen-spacing-large);
+  gap: var(--zen-spacing-medium);
+}
+
+.tab-group {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  box-sizing: border-box;
+  gap: var(--zen-spacing-medium);
+  padding: 0;
+  margin: 0;
+  flex-shrink: 0;
+}
+
+.tab {
+  font-size: var(--zen-font-size-medium);
+}
+
+.tab-button {
+  width: 100%;
+  padding: var(--zen-spacing-medium) var(--zen-spacing-large);
+  border: none;
+  border-radius: var(--zen-border-radius-large);
+  color: var(--zen-color-black);
+  background-color: transparent;
+  font-size: var(--zen-font-size-medium);
+  cursor: pointer;
+}
+
+.content-group {
+  background-color: var(--zen-color-primary);
+  padding: var(--zen-spacing-large);
+  border-radius: var(--zen-border-radius-large);
+}
+
+.content {
+  width: 100%;
+  font-size: var(--zen-font-size-medium);
+  color: var(--zen-color-white);
+}
+
+/* 아래는 조건부로 적용할 css */
+
+.bg-gray {
+  background-color: var(--zen-color-primary);
+  color: var(--zen-color-white);
+}
+
+.active-hover:hover {
+  background-color: var(--zen-color-white);
+}
+
+.vertical-tabs {
+  flex-direction: column;
+}
+
+.horizontal-tabs {
+  flex-direction: row;
+}
+
+.vertical-tab-group {
+  flex-direction: row;
+  overflow-x: auto;
+  white-space: nowrap;
+  scrollbar-width: none;
+}
+
+.horizontal-tab-group {
+  flex-direction: column;
+  overflow-y: auto;
+  white-space: nowrap;
+  scrollbar-width: none;
+}
+
+.flex-row {
+  flex-direction: row;
+}
