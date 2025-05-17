@@ -10,7 +10,7 @@
   color: var(--zen-color-black);
   font-size: var(--zen-font-size-small);
   box-sizing: border-box;
-  padding: 10px 20px;
+  padding: 0;
   border: none;
   border-radius: var(--zen-border-radius-medium);
   cursor: pointer;
@@ -30,7 +30,7 @@
 }
 
 /* 활성화된 버튼의 스타일 */
-.pagination-active-btn {
+.pagination-btn.active {
   border: 1px solid var(--zen-color-secondary);
   border-radius: var(--zen-border-radius-medium);
 }
@@ -41,11 +41,7 @@
   align-items: center;
 }
 
-.icon {
+.pagination-icon {
   width: 40px;
   height: 16px;
-  cursor:pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }

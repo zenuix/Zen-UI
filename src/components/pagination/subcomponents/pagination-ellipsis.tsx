@@ -3,22 +3,22 @@ import Page from './pagination-page';
 import { useContext } from 'react';
 import { paginationContext } from '../context';
 
-const PaginationEllipsis = ({ show, type }: { show: boolean; type: string }) => {
+const PaginationEllipsis = ({ isLeading = false }: PaginationEllipsis) => {
   const { totalPages, pages } = useContext(paginationContext);
 
-  if (show && type === 'leadingEllipsis' && !pages.includes(1)) {
+  if (isLeading && pages[0] > 1) {
     return (
       <>
-        <Page page={1} />
-        <Ellipsis className='icon' />
+        {pages[0] > 1 && <Page page={1} />}
+        {pages[0] > 2 && <Ellipsis className="pagination-icon" />}
       </>
     );
   }
 
-  if (show && type === 'trailingEllipsis' && !pages.includes(totalPages)) {
+  if (!isLeading && pages[pages.length - 1] < totalPages) {
     return (
       <>
-        <Ellipsis className='icon' />
+        <Ellipsis className="pagination-icon" />
         <Page page={totalPages} />
       </>
     );
@@ -28,3 +28,7 @@ const PaginationEllipsis = ({ show, type }: { show: boolean; type: string }) => 
 };
 
 export default PaginationEllipsis;
+
+type PaginationEllipsis = {
+  isLeading?: boolean;
+};

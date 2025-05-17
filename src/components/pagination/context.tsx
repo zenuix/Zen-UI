@@ -1,12 +1,10 @@
 import React, { useReducer, createContext, useEffect } from 'react';
 
 const initialState: PaginationState = {
-  currentPage: 0,
+  currentPage: 1,
   totalPages: 0,
   pageLimit: 0,
-  pages: [],
-  leadingEllipsis: false,
-  trailingEllipsis: false
+  pages: []
 };
 
 const paginationReducer = (state: PaginationState, action: PaginationAction): PaginationState => {
@@ -25,72 +23,68 @@ const paginationReducer = (state: PaginationState, action: PaginationAction): Pa
 };
 
 export const paginationContext = createContext<PaginationContextType>({
-  currentPage: 0,
-  totalPages: 0,
-  pageLimit: 0,
-  pages: [],
-  leadingEllipsis: false,
-  trailingEllipsis: false,
+  ...initialState,
   selectPage: () => {},
-  prevPage: () => {},
-  nextPage: () => {},
-  setPages: () => {}
+  setToPrevPage: () => {},
+  setToNextPage: () => {},
+  updatePageRange: () => {}
 });
 
 export const PaginationProvider = ({
   children,
   totalPages,
   pageLimit = 5,
-  leadingEllipsis = false,
-  trailingEllipsis = false
+  onPageChange
 }: {
   children: React.ReactNode;
   totalPages: number;
   pageLimit: number;
-  leadingEllipsis?: boolean;
-  trailingEllipsis?: boolean;
+  onPageChange?: (page: number) => void;
 }) => {
   const [state, dispatch] = useReducer(paginationReducer, {
     ...initialState,
     totalPages,
-    pageLimit,
-    leadingEllipsis,
-    trailingEllipsis
+    pageLimit
   });
 
   const selectPage = (page: number) => {
     dispatch({ type: SELECT_PAGE, page });
+    if (onPageChange) onPageChange(page);
   };
 
-  const prevPage = () => {
-    dispatch({ type: PREV_PAGE });
+  const setToPrevPage = () => {
+    if (state.currentPage > 1) {
+      const newPage = state.currentPage - 1;
+      dispatch({ type: PREV_PAGE });
+      if (onPageChange) onPageChange(newPage);
+    }
   };
 
-  const nextPage = () => {
-    dispatch({ type: NEXT_PAGE });
+  const setToNextPage = () => {
+    if (state.currentPage < state.totalPages) {
+      const newPage = state.currentPage + 1;
+      dispatch({ type: NEXT_PAGE });
+      if (onPageChange) onPageChange(newPage);
+    }
   };
 
-  const setPages = () => {
-    let startPage = Math.max(1, state.currentPage - Math.floor(pageLimit / 2));
-    let lastPage = startPage + pageLimit - 1;
+  const updatePageRange = () => {
+    let startPage = Math.max(1, state.currentPage - Math.floor(state.pageLimit / 2));
+    let lastPage = startPage + state.pageLimit - 1;
 
-    if (lastPage > totalPages) {
-      lastPage = totalPages;
-      startPage = Math.max(1, lastPage - pageLimit + 1);
+    if (lastPage > state.totalPages) {
+      lastPage = state.totalPages;
+      startPage = Math.max(1, lastPage - state.pageLimit + 1);
     }
 
-    let pages = [];
-
-    for (let i = startPage; i <= lastPage; i++) {
-      pages.push(i);
-    }
+    const pages = Array.from({ length: lastPage - startPage + 1 }, (_, i) => startPage + i);
 
     dispatch({ type: SET_PAGES, pages });
   };
 
   useEffect(() => {
-    setPages();
-  }, [state.currentPage, totalPages, pageLimit, state.leadingEllipsis, state.trailingEllipsis]);
+    updatePageRange();
+  }, [state.currentPage]);
 
   return (
     <paginationContext.Provider
@@ -99,12 +93,10 @@ export const PaginationProvider = ({
         totalPages,
         pageLimit,
         pages: state.pages,
-        leadingEllipsis,
-        trailingEllipsis,
         selectPage,
-        prevPage,
-        nextPage,
-        setPages
+        setToPrevPage,
+        setToNextPage,
+        updatePageRange
       }}
     >
       {children}
@@ -128,8 +120,6 @@ type PaginationState = {
   totalPages: number;
   pageLimit: number;
   pages: number[];
-  leadingEllipsis: boolean;
-  trailingEllipsis: boolean;
 };
 
 type PaginationContextType = {
@@ -137,10 +127,8 @@ type PaginationContextType = {
   totalPages: number;
   pageLimit: number;
   pages: number[];
-  leadingEllipsis: boolean;
-  trailingEllipsis: boolean;
   selectPage: (page: number) => void;
-  prevPage: () => void;
-  nextPage: () => void;
-  setPages: () => void;
+  setToPrevPage: () => void;
+  setToNextPage: () => void;
+  updatePageRange: () => void;
 };

@@ -3,11 +3,11 @@ import { paginationContext } from '../context';
 import { ChevronLeft } from 'lucide-react';
 
 const PaginationPrevious = () => {
-  const { prevPage, currentPage } = useContext(paginationContext);
+  const { setToPrevPage, currentPage } = useContext(paginationContext);
   return (
-    <div onClick={prevPage}>
-      <ChevronLeft className={`icon ${currentPage === 1 && 'pagination-disabled'}`} />
-    </div>
+    <button className="pagination-btn" onClick={setToPrevPage}>
+      <ChevronLeft className={`pagination-icon ${currentPage === 1 && 'pagination-disabled'}`} />
+    </button>
   );
 };
 

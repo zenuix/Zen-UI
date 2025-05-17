@@ -6,7 +6,7 @@ const PaginationPage = ({ page }: { page: number }) => {
   const isActive = currentPage === page;
 
   return (
-    <button key={page} onClick={() => selectPage(page)} className={`pagination-btn ${isActive ? 'pagination-active-btn' : ''}`}>
+    <button key={page} onClick={() => selectPage(page)} className={`pagination-btn ${isActive ? 'active' : ''}`}>
       {page}
     </button>
   );

@@ -1,19 +1,12 @@
 import { ReactNode } from 'react';
 import { PaginationProvider } from './context';
 
-const PaginationContainer = ({
-  children,
-  totalPages,
-  pageLimit,
-  leadingEllipsis,
-  trailingEllipsis
-}: PaginationProviderProps) => {
+const PaginationContainer = ({ children, totalPages, pageLimit, onPageChange }: PaginationProviderProps) => {
   return (
     <PaginationProvider
       totalPages={totalPages}
       pageLimit={pageLimit}
-      leadingEllipsis={leadingEllipsis}
-      trailingEllipsis={trailingEllipsis}
+      onPageChange={onPageChange}
       aria-label="pagination"
     >
       {children}
@@ -27,6 +20,5 @@ type PaginationProviderProps = {
   children: ReactNode;
   totalPages: number;
   pageLimit: number;
-  leadingEllipsis: boolean;
-  trailingEllipsis: boolean;
+  onPageChange?: (page: number) => void;
 };
